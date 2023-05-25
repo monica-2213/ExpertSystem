@@ -123,21 +123,16 @@ knowledge_base = {
 def calculate_cervical_cancer_risk(answers):
     # Calculate the risk score based on the answers
     risk_score = 0
-    total_possible_risk = 0
+    total_possible_risk = sum([factor['risk_factor'] for factor in knowledge_base.values()])
 
     for key, value in answers.items():
         if key in knowledge_base:
             if value in knowledge_base[key]['rules']:
                 rule_score = knowledge_base[key]['rules'][value]
                 risk_score += rule_score
-                total_possible_risk += knowledge_base[key]['risk_factor']
 
     # Calculate risk percentage
-    if total_possible_risk != 0:
-        risk_percentage = (risk_score / total_possible_risk) * 100
-    else:
-        risk_percentage = 0
-
+    risk_percentage = (risk_score / total_possible_risk) * 100
     return risk_percentage
 
 
