@@ -1,118 +1,110 @@
 import streamlit as st
-import numpy as np
-import skfuzzy as fuzz
-from skfuzzy import control as ctrl
 
-# Define the rules for risk assessment
-lifestyle_rules = [
-    ("Multiple sexual partners", "higher"),
-    ("Early sexual activity", "higher"),
-    ("History of HPV infection", "higher"),
-    ("Practices safe sex with condoms", "lower"),
-    ("Smoker", "higher"),
-    ("Weakened immune system", "higher"),
-    ("Long-term oral contraceptive use", "slightly higher"),
-    ("Unhealthy diet", "higher"),
-    ("Obesity or overweight", "higher"),
-    ("Healthy lifestyle", "lower")
-]
-
-family_history_rules = [
-    ("Presence of specific gene variations", "higher"),
-    ("Family history of cervical cancer", "slightly higher"),
-    ("Diagnosis of Lynch syndrome or Cowden syndrome", "higher"),
-    ("No genetic predisposition, familial clustering, or inherited conditions", "lower")
-]
-
-symptoms_rules = [
-    ("Abnormal vaginal bleeding", "possible"),
-    ("Unusual vaginal discharge", "possible"),
-    ("Persistent pelvic pain", "possible"),
-    ("Pain during sexual intercourse", "possible"),
-    ("Urinary problems", "possible")
-]
-
-# Define the fuzzy input variables
-age = ctrl.Antecedent(np.arange(20, 81, 1), 'age')
-age['young'] = fuzz.trimf(age.universe, [20, 20, 40])
-age['middle_aged'] = fuzz.trimf(age.universe, [20, 40, 60])
-age['old'] = fuzz.trimf(age.universe, [40, 60, 80])
-
-family_history = ctrl.Antecedent(np.arange(0, 11, 1), 'family_history')
-family_history['low'] = fuzz.trimf(family_history.universe, [0, 0, 5])
-family_history['medium'] = fuzz.trimf(family_history.universe, [0, 5, 10])
-family_history['high'] = fuzz.trimf(family_history.universe, [5, 10, 10])
-
-# Define the fuzzy output variable
-risk = ctrl.Consequent(np.arange(0, 101, 1), 'risk')
-risk['low'] = fuzz.trimf(risk.universe, [0, 0, 25])
-risk['medium'] = fuzz.trimf(risk.universe, [0, 25, 75])
-risk['high'] = fuzz.trimf(risk.universe, [25, 75, 100])
-
-# Define the fuzzy membership functions and rules
-rule1 = ctrl.Rule(age['young'] | age['middle_aged'], risk['low'])
-rule2 = ctrl.Rule(age['old'], risk['medium'])
-
-rule3 = ctrl.Rule(family_history['low'], risk['low'])
-rule4 = ctrl.Rule(family_history['medium'], risk['medium'])
-rule5 = ctrl.Rule(family_history['high'], risk['high'])
-
-# Create the fuzzy control system
-risk_assessment_ctrl = ctrl.ControlSystem([rule1, rule2, rule3, rule4, rule5])
-risk_assessment = ctrl.ControlSystemSimulation(risk_assessment_ctrl)
+def calculate_cervical_cancer_risk(answers):
+    risk_score = 0
+    
+    if answers['sexual_partners'] == 'Multiple':
+        risk_score += 1
+    
+    if answers['sexual_activity_age'] == 'Early':
+        risk_score += 1
+    
+    if answers['hpv_infection']:
+        risk_score += 1
+    
+    if answers['safe_sex']:
+        risk_score -= 1
+    
+    if answers['smoker']:
+        risk_score += 1
+    
+    if answers['weakened_immune_system']:
+        risk_score += 1
+    
+    if answers['contraceptive_use'] == 'Long-term':
+        risk_score += 0.5
+    
+    if answers['diet'] == 'Unhealthy':
+        risk_score += 1
+    
+    if answers['weight'] == 'Obese':
+        risk_score += 1
+    
+    if answers['exercise']:
+        risk_score -= 1
+    
+    if answers['gene_variations']:
+        risk_score += 1
+    
+    if answers['family_history'] == 'Close relatives':
+        risk_score += 0.5
+    
+    if answers['inherited_conditions']:
+        risk_score += 1
+    
+    if answers['abnormal_bleeding']:
+        st.warning('Abnormal vaginal bleeding is present. Consider the possibility of cervical cancer.')
+    
+    if answers['unusual_discharge']:
+        st.warning('Unusual vaginal discharge is present. Consider the possibility of cervical cancer.')
+    
+    if answers['pelvic_pain']:
+        st.warning('Persistent pelvic pain is reported. Consider the possibility of advanced cervical cancer.')
+    
+    if answers['pain_during_intercourse']:
+        st.warning('Pain during sexual intercourse (dyspareunia) is reported. Consider the possibility of cervical cancer.')
+    
+    if answers['urinary_problems']:
+        st.warning('Urinary problems are present. Consider the possibility of advanced cervical cancer.')
+    
+    return risk_score
 
 # Streamlit app
-st.title("Cervical Cancer Risk Assessment")
-st.subheader("Please answer the following questions to assess your risk of cervical cancer.")
+def main():
+    st.title('GynoCare - Cervical Cancer Risk Assessment')
+    st.write('Answer the following questions to assess your risk for cervical cancer.')
 
-# Age question
-st.header("Demographics")
-age_input = st.slider("Select your age:", 20, 80)
+    # Questions
+    questions = {
+        'sexual_partners': 'How many sexual partners have you had?',
+        'sexual_activity_age': 'At what age did you first engage in sexual activity?',
+        'hpv_infection': 'Have you ever had an HPV infection?',
+        'safe_sex': 'Do you consistently practice safe sex and use condoms?',
+        'smoker': 'Do you smoke?',
+        'weakened_immune_system': 'Do you have a weakened immune system due to a medical condition or medications?',
+        'contraceptive_use': 'What is the duration of your long-term oral contraceptive use?',
+        'diet': 'How would you describe your diet?',
+        'weight': 'What is your current weight status?',
+        'exercise': 'Do you engage in regular physical activity?',
+        'gene_variations': 'Do you have any known gene variations associated with cervical cancer susceptibility?',
+        'family_history': 'Is there a family history of cervical cancer among close relatives?',
+        'inherited_conditions': 'Do you have a known diagnosis of Lynch syndrome or Cowden syndrome?',
+        'abnormal_bleeding': 'Are you experiencing abnormal vaginal bleeding?',
+        'unusual_discharge': 'Are you experiencing unusual vaginal discharge (watery, bloody, or foul odor)?',
+        'pelvic_pain': 'Are you experiencing persistent pelvic pain?',
+        'pain_during_intercourse': 'Are you experiencing pain during sexual intercourse?',
+        'urinary_problems': 'Are you experiencing urinary problems (blood in urine, urinary incontinence, frequent urination)?'
+    }
 
-# Family history question
-st.header("Family History")
-family_history_input = st.radio("Do you have any family history of cervical cancer?", ("Yes", "No"))
+    answers = {}
 
-# Set the inputs for fuzzy reasoning
-risk_assessment.input['age'] = age_input
-if family_history_input == "Yes":
-    risk_assessment.input['family_history'] = 5  # Assign a medium value for family history
-else:
-    risk_assessment.input['family_history'] = 0  # Assign a low value for no family history
+    # Display questions and collect answers
+    for key, question in questions.items():
+        answers[key] = st.radio(question, ['No', 'Yes'])
 
-# Lifestyle questions
-st.header("Lifestyle Factors")
-for i, (question, _) in enumerate(lifestyle_rules):
-    answer = st.radio(f"{i+1}. {question}?", ("Yes", "No"))
-    if answer == "Yes":
-        # Update the fuzzy risk assessment based on the lifestyle factor
-        risk_assessment.compute()
+    # Calculate risk score
+    risk_score = calculate_cervical_cancer_risk(answers)
 
-# Symptoms questions
-st.header("Symptoms")
-for i, (question, _) in enumerate(symptoms_rules):
-    answer = st.radio(f"{i+1}. {question}?", ("Yes", "No"))
-    if answer == "Yes":
-        # Update the fuzzy risk assessment based on the symptoms factor
-        risk_assessment.compute()
+    # Display risk assessment
+    st.subheader('Risk Assessment')
+    st.write(f'Your risk score for cervical cancer: {risk_score}')
 
-# Add a submit button
-submit_button = st.button("Submit")
+    # Provide recommendations based on risk score
+    st.subheader('Recommendations')
+    if risk_score >= 3:
+        st.warning('Based on your risk score, it is recommended to consult with a healthcare professional for further evaluation and screening.')
+    else:
+        st.success('Based on your risk score, you have a relatively lower risk for cervical cancer. However, it is still important to attend regular screenings and maintain a healthy lifestyle.')
 
-# Execute when the submit button is clicked
-if submit_button:
-    # Perform fuzzy reasoning based on user inputs
-    risk_assessment.compute()
-
-    # Get the final risk assessment result
-    final_risk = risk_assessment.output['risk']
-
-    # Display the risk assessment result
-    st.subheader("Risk Assessment Result")
-    st.write(f"Your preliminary risk of cervical cancer is: {final_risk:.2f}%")
-
-    # Display additional information or recommendations based on the risk level if desired
-    # (Add code to display additional information or recommendations)
-
-    # Perform further actions or calculations if needed
-    # (Add code for further actions or calculations)
+if __name__ == '__main__':
+    main()
