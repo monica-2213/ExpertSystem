@@ -121,20 +121,17 @@ knowledge_base = {
     }
 }
 
-def calculate_cervical_cancer_risk(answers):
-    # Calculate the risk score based on the answers
+# Function to calculate the risk score based on user inputs
+def calculate_risk_score(answers):
     risk_score = 0
-    total_possible_risk = sum([factor['risk_factor'] for factor in knowledge_base.values()])
-
-    for key, value in answers.items():
-        if key in knowledge_base:
-            if value in knowledge_base[key]['rules']:
-                rule_score = knowledge_base[key]['rules'][value]
-                risk_score += rule_score
-
-    # Calculate risk percentage
-    risk_percentage = (risk_score / total_possible_risk) * 100
-    return risk_percentage
+    for factor, value in answers.items():
+        if factor in knowledge_base:
+            factor_data = knowledge_base[factor]
+            risk_score += factor_data['risk_factor']
+            for rule, score in factor_data['rules'].items():
+                if eval(rule, {'__builtins__': None}, answers):
+                    risk_score += score
+    return risk_score
 
 
 def main():
@@ -183,12 +180,13 @@ def main():
             answers[key] = st.radio(question, ['Yes', 'No'])
 
     if st.button('Submit'):
-        risk_percentage = calculate_cervical_cancer_risk(answers)
+        # Calculate the risk score
+        risk_score = calculate_risk_score(answers)
 
-        st.write('Risk Assessment:')
-        st.write(f'Your risk score for cervical cancer: {risk_percentage:.2f}%')
+        # Display the risk score
+        st.write('Your risk score for cervical cancer:', risk_score)
 
-        if risk_percentage >= 50:
+        if risk_score >= 50:
             st.warning('Based on your risk score, you have a relatively higher risk for cervical cancer. Please consult with your healthcare provider for further evaluation and recommendations.')
         else:
             st.success('Based on your risk score, you have a relatively lower risk for cervical cancer. However, it is still important to attend regular screenings and maintain a healthy lifestyle.')
