@@ -54,7 +54,7 @@ def calculate_cervical_cancer_risk(answers):
     if answers['urinary_problems'] == 'Yes':
         st.warning('Urinary problems are present. Consider the possibility of advanced cervical cancer.')
     
-    risk_percentage = (risk_score / 11) * 100
+    risk_percentage = (risk_score / 12) * 100
     return risk_percentage
 
 # Streamlit app
@@ -64,6 +64,7 @@ def main():
 
     # Questions
     questions = {
+        'age': 'How old are you?',
         'sexual_partners': 'Have you ever had multiple sexual partners?',
         'sexual_activity_age': 'Did you engage in sexual activity at an early age?',
         'hpv_infection': 'Have you ever been diagnosed with HPV infection?',
@@ -74,8 +75,8 @@ def main():
         'diet': 'How would you describe your diet?',
         'weight': 'Do you have obesity or are you overweight?',
         'exercise': 'How would you describe your physical activity level?',
-        'gene_variations': 'Have you been tested for specific gene variations associated with cervical cancer susceptibility?',
         'family_history': 'Are there any close relatives who have been diagnosed with cervical cancer?',
+        'gene_variations': 'Have you been tested for specific gene variations associated with cervical cancer susceptibility?',
         'abnormal_bleeding': 'Have you experienced abnormal vaginal bleeding?',
         'unusual_discharge': 'Have you noticed unusual vaginal discharge that is watery, bloody, or has a foul odor?',
         'pelvic_pain': 'Have you been experiencing persistent pelvic pain in the pelvis, lower back, or abdomen?',
@@ -87,7 +88,10 @@ def main():
 
     # Display questions and collect answers
     for key, question in questions.items():
-        answers[key] = st.radio(question, ['No', 'Yes'])
+        if key == 'age':
+            answers[key] = st.number_input(question, min_value=0, max_value=100)
+        else:
+            answers[key] = st.radio(question, ['No', 'Yes'])
 
     if st.button('Submit'):
         # Calculate risk score
