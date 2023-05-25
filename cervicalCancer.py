@@ -1,5 +1,6 @@
 import streamlit as st
 
+
 knowledge_base = {
     'age': {
         'risk_factor': 10,
