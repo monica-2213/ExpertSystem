@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 knowledge_base = {
     'age': {
         'risk_factor': 10,
@@ -124,6 +123,8 @@ knowledge_base = {
 def calculate_risk_score(answers):
     total_score = 0
     max_score = 0
+    factor_scores = {}
+
     for factor, value in answers.items():
         if factor in knowledge_base:
             factor_data = knowledge_base[factor]
@@ -132,8 +133,17 @@ def calculate_risk_score(answers):
                 if eval(rule, {'__builtins__': None}, answers):
                     max_score += score
                     total_score += score
+                    factor_scores[factor] = factor_scores.get(factor, 0) + score
+
     risk_percentage = (total_score / max_score) * 100
-    return risk_percentage
+    return risk_percentage, factor_scores
+
+
+def generate_explanation(factor_scores):
+    explanation = "Factors contributing to your risk score:\n"
+    for factor, score in factor_scores.items():
+        explanation += f"- {factor}: {score}\n"
+    return explanation
 
 
 def main():
@@ -182,17 +192,19 @@ def main():
             answers[key] = st.radio(question, ['Yes', 'No'])
 
     if st.button('Submit'):
-        # Calculate the risk score
-        risk_percentage = calculate_risk_score(answers)
-        
-        # Display the risk score as a percentage
+        risk_percentage, factor_scores = calculate_risk_score(answers)
+        explanation = generate_explanation(factor_scores)
+
         st.write('Your risk score for cervical cancer:', f'{risk_percentage:.2f}%')
+        st.write('Explanation:')
+        st.write(explanation)
 
         if risk_percentage >= 50:
             st.warning('Based on your risk score, you have a relatively higher risk for cervical cancer. Please consult with your healthcare provider for further evaluation and recommendations.')
         else:
             st.success('Based on your risk score, you have a relatively lower risk for cervical cancer. However, it is still important to attend regular screenings and maintain a healthy lifestyle.')
 
+            
         # Generate explanation
         st.write('Explanation:')
         st.write('Your risk score is calculated based on various risk factors for cervical cancer. The higher the risk score, the higher the probability of developing cervical cancer. The factors that contributed most to your risk score include...')
