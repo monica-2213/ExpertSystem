@@ -2,7 +2,7 @@ import streamlit as st
 
 knowledge_base = {
     'age': {
-        'risk_factor': 10,
+        'risk_factor': 20,
         'rules': {
             'age >= 20 and age < 40': 20,
             '(age >= 40 and age < 59) or (age >= 10 and age < 20)': 10
@@ -11,7 +11,7 @@ knowledge_base = {
     'multiple_partners': {
         'risk_factor': 10,
         'rules': {
-            'multiple_partners == "Yes"': 20
+            'multiple_partners == "Yes"': 10
         }
     },
     'early_sexual_activity': {
@@ -23,13 +23,13 @@ knowledge_base = {
     'hpv_infection': {
         'risk_factor': 10,
         'rules': {
-            'hpv_infection == "Yes"': 15
+            'hpv_infection == "Yes"': 10
         }
     },
     'safe_sex': {
         'risk_factor': 10,
         'rules': {
-            'safe_sex == "No"': 15
+            'safe_sex == "No"': 10
         }
     },
     'smoking': {
@@ -45,9 +45,9 @@ knowledge_base = {
         }
     },
     'long_term_oral_contraceptives': {
-        'risk_factor': 5,
+        'risk_factor': 10,
         'rules': {
-            'long_term_oral_contraceptives == "Yes"': 5
+            'long_term_oral_contraceptives == "Yes"': 10
         }
     },
     'diet': {
@@ -63,7 +63,7 @@ knowledge_base = {
         }
     },
     'physical_activity': {
-        'risk_factor': 0,
+        'risk_factor': 10,
         'rules': {
             'physical_activity == "Sedentary"': 10,
             'physical_activity == "Moderately active"': 5,
