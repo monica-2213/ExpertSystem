@@ -152,7 +152,7 @@ def main():
     answers = {}
 
     for key, question in questions.items():
-       if key == 'diet':
+        if key == 'diet':
             answers[key] = st.selectbox(question, [
                 'Low in fruits and vegetables, high in processed foods',
                 'Balanced and healthy'
