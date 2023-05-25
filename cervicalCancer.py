@@ -126,7 +126,6 @@ def calculate_cervical_cancer_risk(answers):
 
     for key, value in answers.items():
         if key in knowledge_base:
-            risk_factor = knowledge_base[key]['risk_factor']
             if value in knowledge_base[key]['rules']:
                 rule_score = knowledge_base[key]['rules'][value]
                 risk_score += rule_score
@@ -142,7 +141,23 @@ def main():
     questions = {
         'age': 'How old are you?',
         'multiple_partners': 'Have you ever had multiple sexual partners?',
-        # Add more questions here
+        'early_sexual_activity': 'Did you engage in sexual activity at an early age?',
+        'hpv_infection': 'Have you ever been diagnosed with HPV infection?',
+        'safe_sex': 'Do you consistently practice safe sex and use condoms?',
+        'smoking': 'Do you currently smoke?',
+        'weakened_immune_system': 'Do you have a weakened immune system due to a medical condition or immunosuppressant medications?',
+        'long_term_oral_contraceptives': 'Have you used oral contraceptives for a long time?',
+        'diet': 'How would you describe your diet?',
+        'obesity_overweight': 'Do you have obesity or are you overweight?',
+        'physical_activity': 'How would you describe your physical activity level?',
+        'family_history': 'Are there any close relatives (mother, sister, etc.) who have been diagnosed with cervical cancer?',
+        'gene_variations': 'Have you been tested for specific gene variations associated with cervical cancer susceptibility?',
+        'lynch_or_cowden_syndrome': 'Have you been diagnosed with Lynch syndrome or Cowden syndrome?',
+        'abnormal_bleeding': 'Have you experienced abnormal vaginal bleeding?',
+        'unusual_discharge': 'Have you noticed unusual vaginal discharge that is watery, bloody, or has a foul odor?',
+        'pelvic_pain': 'Have you been experiencing persistent pelvic pain in the pelvis, lower back, or abdomen?',
+        'pain_during_intercourse': 'Do you experience pain during sexual intercourse (dyspareunia)?',
+        'urinary_problems': 'Have you experienced urinary problems such as blood in the urine (hematuria), urinary incontinence, or frequent urination?'
     }
 
     answers = {}
