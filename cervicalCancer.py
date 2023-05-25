@@ -184,8 +184,8 @@ def main():
     if st.button('Submit'):
         # Calculate the risk score
         risk_percentage = calculate_risk_score(answers)
-
-       `# Display the risk score as a percentage
+        
+        # Display the risk score as a percentage
         st.write('Your risk score for cervical cancer:', f'{risk_percentage:.2f}%')
 
         if risk_score >= 50:
