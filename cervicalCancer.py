@@ -196,14 +196,12 @@ def main():
         explanation = generate_explanation(factor_scores)
 
         st.write('Your risk score for cervical cancer:', f'{risk_percentage:.2f}%')
-        st.write('Your risk score is calculated based on various risk factors for cervical cancer. The higher the risk score, the higher the probability of developing cervical cancer. The factors that contributed most to your risk score include...')
-        st.write(explanation)
-
         if risk_percentage >= 50:
             st.warning('Based on your risk score, you have a relatively higher risk for cervical cancer. Please consult with your healthcare provider for further evaluation and recommendations.')
         else:
             st.success('Based on your risk score, you have a relatively lower risk for cervical cancer. However, it is still important to attend regular screenings and maintain a healthy lifestyle.')
-
+        st.write('Your risk score is calculated based on various risk factors for cervical cancer. The higher the risk score, the higher the probability of developing cervical cancer. The factors that contributed most to your risk score include...')
+        st.write(explanation)
             
 if __name__ == '__main__':
     main()
