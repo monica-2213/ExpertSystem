@@ -167,7 +167,7 @@ def main():
 
     for key, question in questions.items():
         if key == 'age':
-            answers[key] = st.number_input(question, min_value=1, max_value=100, step=1)
+            answers[key] = st.number_input(question, min_value=18, max_value=100, step=1)
         elif key == 'diet':
             answers[key] = st.selectbox(question, [
                 'Low in fruits and vegetables, high in processed foods',
