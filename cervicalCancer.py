@@ -162,8 +162,22 @@ def main():
 
     answers = {}
 
-    for key, question in questions.items():
-        answers[key] = st.radio(question, ['Yes', 'No'])
+        for key, question in questions.items():
+            if key == 'age':
+                answers[key] = st.number_input(question, min_value=1, max_value=100, step=1)
+            elif key == 'diet':
+                answers[key] = st.selectbox(question, [
+                    'Low in fruits and vegetables, high in processed foods',
+                    'Balanced and healthy'
+                ])
+            elif key == 'physical_activity':
+                answers[key] = st.selectbox(question, [
+                    'Sedentary',
+                    'Moderately active',
+                    'Regularly active and engage in physical exercise'
+                ])
+            else:
+                answers[key] = st.radio(question, ['Yes', 'No'])
 
     if st.button('Submit'):
         risk_percentage = calculate_cervical_cancer_risk(answers)
