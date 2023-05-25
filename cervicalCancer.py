@@ -33,29 +33,52 @@ symptoms_rules = [
 ]
 
 # Define the fuzzy input variables
-lifestyle = ctrl.Antecedent(np.arange(0, 11, 1), 'lifestyle')
-lifestyle['poor'] = fuzz.trimf(lifestyle.universe, [0, 0, 5])
-lifestyle['average'] = fuzz.trimf(lifestyle.universe, [0, 5, 10])
-lifestyle['good'] = fuzz.trimf(lifestyle.universe, [5, 10, 10])
+age = ctrl.Antecedent(np.arange(20, 81, 1), 'age')
+age['young'] = fuzz.trimf(age.universe, [20, 20, 40])
+age['middle_aged'] = fuzz.trimf(age.universe, [20, 40, 60])
+age['old'] = fuzz.trimf(age.universe, [40, 60, 80])
+
+family_history = ctrl.Antecedent(np.arange(0, 11, 1), 'family_history')
+family_history['low'] = fuzz.trimf(family_history.universe, [0, 0, 5])
+family_history['medium'] = fuzz.trimf(family_history.universe, [0, 5, 10])
+family_history['high'] = fuzz.trimf(family_history.universe, [5, 10, 10])
 
 # Define the fuzzy output variable
 risk = ctrl.Consequent(np.arange(0, 101, 1), 'risk')
-risk['low'] = fuzz.trimf(risk.universe, [0, 0, 50])
-risk['medium'] = fuzz.trimf(risk.universe, [0, 50, 100])
-risk['high'] = fuzz.trimf(risk.universe, [50, 100, 100])
+risk['low'] = fuzz.trimf(risk.universe, [0, 0, 25])
+risk['medium'] = fuzz.trimf(risk.universe, [0, 25, 75])
+risk['high'] = fuzz.trimf(risk.universe, [25, 75, 100])
 
 # Define the fuzzy membership functions and rules
-rule1 = ctrl.Rule(lifestyle['poor'], risk['low'])
-rule2 = ctrl.Rule(lifestyle['average'], risk['medium'])
-rule3 = ctrl.Rule(lifestyle['good'], risk['high'])
+rule1 = ctrl.Rule(age['young'] | age['middle_aged'], risk['low'])
+rule2 = ctrl.Rule(age['old'], risk['medium'])
+
+rule3 = ctrl.Rule(family_history['low'], risk['low'])
+rule4 = ctrl.Rule(family_history['medium'], risk['medium'])
+rule5 = ctrl.Rule(family_history['high'], risk['high'])
 
 # Create the fuzzy control system
-risk_assessment_ctrl = ctrl.ControlSystem([rule1, rule2, rule3])
+risk_assessment_ctrl = ctrl.ControlSystem([rule1, rule2, rule3, rule4, rule5])
 risk_assessment = ctrl.ControlSystemSimulation(risk_assessment_ctrl)
 
 # Streamlit app
 st.title("Cervical Cancer Risk Assessment")
 st.subheader("Please answer the following questions to assess your risk of cervical cancer.")
+
+# Age question
+st.header("Demographics")
+age_input = st.slider("Select your age:", 20, 80)
+
+# Family history question
+st.header("Family History")
+family_history_input = st.radio("Do you have any family history of cervical cancer?", ("Yes", "No"))
+
+# Set the inputs for fuzzy reasoning
+risk_assessment.input['age'] = age_input
+if family_history_input == "Yes":
+    risk_assessment.input['family_history'] = 5  # Assign a medium value for family history
+else:
+    risk_assessment.input['family_history'] = 0  # Assign a low value for no family history
 
 # Lifestyle questions
 st.header("Lifestyle Factors")
@@ -63,15 +86,7 @@ for i, (question, _) in enumerate(lifestyle_rules):
     answer = st.radio(f"{i+1}. {question}?", ("Yes", "No"))
     if answer == "Yes":
         # Update the fuzzy risk assessment based on the lifestyle factor
-        risk_assessment.input['lifestyle'] = 10
-
-# Family history questions
-st.header("Family History")
-for i, (question, _) in enumerate(family_history_rules):
-    answer = st.radio(f"{i+1}. {question}?", ("Yes", "No"))
-    if answer == "Yes":
-        # Update the fuzzy risk assessment based on the family history factor
-        risk_assessment.input['lifestyle'] = 5
+        risk_assessment.compute()
 
 # Symptoms questions
 st.header("Symptoms")
@@ -79,7 +94,7 @@ for i, (question, _) in enumerate(symptoms_rules):
     answer = st.radio(f"{i+1}. {question}?", ("Yes", "No"))
     if answer == "Yes":
         # Update the fuzzy risk assessment based on the symptoms factor
-        risk_assessment.input['lifestyle'] = 3
+        risk_assessment.compute()
 
 # Add a submit button
 submit_button = st.button("Submit")
