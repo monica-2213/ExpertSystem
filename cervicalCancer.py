@@ -4,8 +4,8 @@ knowledge_base = {
     'age': {
         'risk_factor': 10,
         'rules': {
-            'age >= 20 && age < 40': 20,
-            '(age >= 40 && age < 59) || (age >= 10 && age < 20)': 10
+            'age >= 20 and age < 40': 20,
+            '(age >= 40 and age < 59) or (age >= 10 and age < 20)': 10
         }
     },
     'multiple_partners': {
