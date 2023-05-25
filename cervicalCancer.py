@@ -133,8 +133,13 @@ def calculate_cervical_cancer_risk(answers):
                 total_possible_risk += knowledge_base[key]['risk_factor']
 
     # Calculate risk percentage
-    risk_percentage = (risk_score / total_possible_risk) * 100
+    if total_possible_risk != 0:
+        risk_percentage = (risk_score / total_possible_risk) * 100
+    else:
+        risk_percentage = 0
+
     return risk_percentage
+
 
 def main():
     st.title('Cervical Cancer Risk Assessment')
