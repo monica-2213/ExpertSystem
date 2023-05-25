@@ -2,120 +2,120 @@ import streamlit as st
 
 knowledge_base = {
     'age': {
-        'risk_factor': 10,
+        'risk_factor': 2,
         'rules': {
-            'age >= 50': 20,
-            'age >= 30': 10
+            'age >= 60': 0,
+            'age >= 35 and age <= 44': 2
         }
     },
     'multiple_partners': {
-        'risk_factor': 10,
+        'risk_factor': 2,
         'rules': {
-            'multiple_partners == "Yes"': 20
+            'multiple_partners == "Yes"': 2
         }
     },
     'early_sexual_activity': {
-        'risk_factor': 10,
+        'risk_factor': 2,
         'rules': {
-            'early_sexual_activity == "Yes"': 10
+            'early_sexual_activity == "Yes"': 2
         }
     },
     'hpv_infection': {
-        'risk_factor': 10,
+        'risk_factor': 2,
         'rules': {
-            'hpv_infection == "Yes"': 15
+            'hpv_infection == "Yes"': 2
         }
     },
     'safe_sex': {
-        'risk_factor': 10,
+        'risk_factor': 0,
         'rules': {
-            'safe_sex == "No"': 15
+            'safe_sex == "No"': 0
         }
     },
     'smoking': {
-        'risk_factor': 10,
+        'risk_factor': 2,
         'rules': {
-            'smoking == "Yes"': 10
+            'smoking == "Yes"': 2
         }
     },
     'weakened_immune_system': {
-        'risk_factor': 10,
+        'risk_factor': 2,
         'rules': {
-            'weakened_immune_system == "Yes"': 10
+            'weakened_immune_system == "Yes"': 2
         }
     },
     'long_term_oral_contraceptives': {
-        'risk_factor': 5,
+        'risk_factor': 2,
         'rules': {
-            'long_term_oral_contraceptives == "Yes"': 5
+            'long_term_oral_contraceptives == "Yes"': 2
         }
     },
     'diet': {
-        'risk_factor': 10,
+        'risk_factor': 2,
         'rules': {
-            'diet == "Low in fruits and vegetables, high in processed foods"': 10
+            'diet == "Low in fruits and vegetables, high in processed foods"': 2
         }
     },
     'obesity_overweight': {
-        'risk_factor': 10,
+        'risk_factor': 2,
         'rules': {
-            'obesity_overweight == "Yes"': 10
+            'obesity_overweight == "Yes"': 2
         }
     },
     'physical_activity': {
         'risk_factor': 0,
         'rules': {
-            'physical_activity == "Sedentary"': 10,
-            'physical_activity == "Moderately active"': 5,
+            'physical_activity == "Sedentary"': 0,
+            'physical_activity == "Moderately active"': 0,
             'physical_activity == "Regularly active and engage in physical exercise"': 0
         }
     },
     'family_history': {
-        'risk_factor': 10,
+        'risk_factor': 2,
         'rules': {
-            'family_history == "Yes"': 10
+            'family_history == "Yes"': 2
         }
     },
     'gene_variations': {
-        'risk_factor': 10,
+        'risk_factor': 2,
         'rules': {
-            'gene_variations == "Yes"': 10
+            'gene_variations == "Yes"': 2
         }
     },
     'lynch_or_cowden_syndrome': {
-        'risk_factor': 10,
+        'risk_factor': 2,
         'rules': {
-            'lynch_or_cowden_syndrome == "Yes"': 10
+            'lynch_or_cowden_syndrome == "Yes"': 2
         }
     },
     'abnormal_bleeding': {
-        'risk_factor': 10,
+        'risk_factor': 2,
         'rules': {
-            'abnormal_bleeding == "Yes"': 10
+            'abnormal_bleeding == "Yes"': 2
         }
     },
     'unusual_discharge': {
-        'risk_factor': 10,
+        'risk_factor': 2,
         'rules': {
-            'unusual_discharge == "Yes"': 10
+            'unusual_discharge == "Yes"': 2
         }
     },
     'pelvic_pain': {
-        'risk_factor': 10,
+        'risk_factor': 2,
         'rules': {
-            'pelvic_pain == "Yes"': 10
+            'pelvic_pain == "Yes"': 2
         }
     },
     'pain_during_intercourse': {
-        'risk_factor': 10,
+        'risk_factor': 2,
         'rules': {
-            'pain_during_intercourse == "Yes"': 10
+            'pain_during_intercourse == "Yes"': 2
         }
     },
     'urinary_problems': {
-        'risk_factor': 10,
+        'risk_factor': 2,
         'rules': {
-            'urinary_problems == "Yes"': 10
+            'urinary_problems == "Yes"': 2
         }
     }
 }
