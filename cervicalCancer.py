@@ -1,49 +1,4 @@
-import pandas as pd
 import streamlit as st
-
-# Load the dataset
-data_url = 'https://pkgstore.datahub.io/machine-learning/cervical-cancer/cervical-cancer_csv/data/c43a91f09832cd9db8db84df08c942dc/cervical-cancer_csv.csv'
-df = pd.read_csv(data_url)
-
-# Map column names to question keys
-column_mapping = {
-    'Age': 'age',
-    'Number of sexual partners': 'multiple_partners',
-    'First sexual intercourse': 'early_sexual_activity',
-    'Num of pregnancies': 'pregnancies',
-    'Smokes': 'smoking',
-    'Smokes (years)': 'smoking_years',
-    'Smokes (packs/year)': 'smoking_packs_per_year',
-    'Hormonal Contraceptives': 'hormonal_contraceptives',
-    'Hormonal Contraceptives (years)': 'hormonal_contraceptives_years',
-    'IUD': 'iud',
-    'IUD (years)': 'iud_years',
-    'STDs': 'stds',
-    'STDs (number)': 'stds_number',
-    'STDs:condylomatosis': 'stds_condylomatosis',
-    'STDs:cervical condylomatosis': 'stds_cervical_condylomatosis',
-    'STDs:vaginal condylomatosis': 'stds_vaginal_condylomatosis',
-    'STDs:vulvo-perineal condylomatosis': 'stds_vulvo_perineal_condylomatosis',
-    'STDs:syphilis': 'stds_syphilis',
-    'STDs:pelvic inflammatory disease': 'stds_pelvic_inflammatory_disease',
-    'STDs:genital herpes': 'stds_genital_herpes',
-    'STDs:molluscum contagiosum': 'stds_molluscum_contagiosum',
-    'STDs:AIDS': 'stds_aids',
-    'STDs:HIV': 'stds_hiv',
-    'STDs:Hepatitis B': 'stds_hepatitis_b',
-    'STDs:HPV': 'stds_hpv',
-    'STDs: Number of diagnosis': 'stds_number_of_diagnosis',
-    'STDs: Time since first diagnosis': 'stds_time_since_first_diagnosis',
-    'STDs: Time since last diagnosis': 'stds_time_since_last_diagnosis',
-    'Dx:Cancer': 'dx_cancer',
-    'Dx:CIN': 'dx_cin',
-    'Dx:HPV': 'dx_hpv',
-    'Dx': 'dx',
-    'Hinselmann': 'hinselmann',
-    'Schiller': 'schiller',
-    'Citology': 'citology',
-    'Biopsy': 'biopsy'
-}
 
 knowledge_base = {
     'age': {
@@ -176,15 +131,6 @@ def calculate_risk_score(answers):
                 if eval(rule, {'__builtins__': None}, answers):
                     max_score += score
                     total_score += score
-
-    # Include dataset-based risk factors
-    for index, row in df.iterrows():
-        question_key = column_mapping.get(row['Question'])
-        if question_key and question_key in answers:
-            if str(row['Answer']) == str(answers[question_key]):
-                total_score += int(row['Risk Factor'])
-                max_score += int(row['Risk Factor'])
-
     risk_percentage = (total_score / max_score) * 100
     return risk_percentage
 
