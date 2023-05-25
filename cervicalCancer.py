@@ -4,64 +4,35 @@ def calculate_cervical_cancer_risk(answers):
     # Calculate the risk score based on the answers
     risk_score = 0
 
-    if answers['age'] >= 30:
-        risk_score += 10
+    # Add weighted risk scores for each risk factor
+    risk_scores = {
+        'age': 10,
+        'multiple_partners': 10,
+        'early_sexual_activity': 10,
+        'hpv_infection': 10,
+        'safe_sex': 10,
+        'smoking': 10,
+        'weakened_immune_system': 10,
+        'long_term_oral_contraceptives': 5,
+        'diet': 10,
+        'obesity_overweight': 10,
+        'physical_activity': {'Sedentary': 10, 'Moderately active': 5},
+        'family_history': 10,
+        'gene_variations': 10,
+        'lynch_or_cowden_syndrome': 10,
+        'abnormal_bleeding': 10,
+        'unusual_discharge': 10,
+        'pelvic_pain': 10,
+        'pain_during_intercourse': 10,
+        'urinary_problems': 10
+    }
 
-    if answers['multiple_partners'] == 'Yes':
-        risk_score += 10
-
-    if answers['early_sexual_activity'] == 'Yes':
-        risk_score += 10
-
-    if answers['hpv_infection'] == 'Yes':
-        risk_score += 10
-
-    if answers['safe_sex'] == 'No':
-        risk_score += 10
-
-    if answers['smoking'] == 'Yes':
-        risk_score += 10
-
-    if answers['weakened_immune_system'] == 'Yes':
-        risk_score += 10
-
-    if answers['long_term_oral_contraceptives'] == 'Yes':
-        risk_score += 5
-
-    if answers['diet'] == 'Low in fruits and vegetables, high in processed foods':
-        risk_score += 10
-
-    if answers['obesity_overweight'] == 'Yes':
-        risk_score += 10
-
-    if answers['physical_activity'] == 'Sedentary':
-        risk_score += 10
-    elif answers['physical_activity'] == 'Moderately active':
-        risk_score += 5
-
-    if answers['family_history'] == 'Yes':
-        risk_score += 10
-
-    if answers['gene_variations'] == 'Yes':
-        risk_score += 10
-
-    if answers['lynch_or_cowden_syndrome'] == 'Yes':
-        risk_score += 10
-
-    if answers['abnormal_bleeding'] == 'Yes':
-        risk_score += 10
-
-    if answers['unusual_discharge'] == 'Yes':
-        risk_score += 10
-
-    if answers['pelvic_pain'] == 'Yes':
-        risk_score += 10
-
-    if answers['pain_during_intercourse'] == 'Yes':
-        risk_score += 10
-
-    if answers['urinary_problems'] == 'Yes':
-        risk_score += 10
+    for key, value in answers.items():
+        if key in risk_scores:
+            if isinstance(risk_scores[key], dict):
+                risk_score += risk_scores[key][value]
+            else:
+                risk_score += risk_scores[key]
 
     # Calculate risk percentage
     risk_percentage = (risk_score / 200) * 100
@@ -122,6 +93,18 @@ def main():
             st.warning('Based on your risk score, you have a relatively higher risk for cervical cancer. Please consult with your healthcare provider for further evaluation and recommendations.')
         else:
             st.success('Based on your risk score, you have a relatively lower risk for cervical cancer. However, it is still important to attend regular screenings and maintain a healthy lifestyle.')
+
+        # Provide uncertainty estimation
+        st.write(f'Uncertainty: High')  # Add appropriate uncertainty measure or explanation
+
+        # Generate explanation
+        st.write('Explanation:')
+        st.write('Your risk score is calculated based on various risk factors for cervical cancer. The higher the risk score, the higher the probability of developing cervical cancer. The factors that contributed most to your risk score include...')
+        # Provide explanation for the factors contributing to the risk score
+
+        # Rule editor (dummy implementation)
+        if st.button('Edit Rules'):
+            st.write('Rule Editor: (Under development)')  # Provide an interface to edit the rules or add custom rules
 
 if __name__ == '__main__':
     main()
