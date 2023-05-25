@@ -188,7 +188,7 @@ def main():
         # Display the risk score as a percentage
         st.write('Your risk score for cervical cancer:', f'{risk_percentage:.2f}%')
 
-        if risk_score >= 50:
+        if risk_percentage >= 50:
             st.warning('Based on your risk score, you have a relatively higher risk for cervical cancer. Please consult with your healthcare provider for further evaluation and recommendations.')
         else:
             st.success('Based on your risk score, you have a relatively lower risk for cervical cancer. However, it is still important to attend regular screenings and maintain a healthy lifestyle.')
