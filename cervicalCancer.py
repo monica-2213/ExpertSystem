@@ -121,17 +121,19 @@ knowledge_base = {
     }
 }
 
-# Function to calculate the risk score based on user inputs
 def calculate_risk_score(answers):
-    risk_score = 0
+    total_score = 0
+    max_score = 0
     for factor, value in answers.items():
         if factor in knowledge_base:
             factor_data = knowledge_base[factor]
-            risk_score += factor_data['risk_factor']
+            max_score += factor_data['risk_factor']
             for rule, score in factor_data['rules'].items():
                 if eval(rule, {'__builtins__': None}, answers):
-                    risk_score += score
-    return risk_score
+                    max_score += score
+                    total_score += score
+    risk_percentage = (total_score / max_score) * 100
+    return risk_percentage
 
 
 def main():
@@ -181,10 +183,10 @@ def main():
 
     if st.button('Submit'):
         # Calculate the risk score
-        risk_score = calculate_risk_score(answers)
+        risk_percentage = calculate_risk_score(answers)
 
-        # Display the risk score
-        st.write('Your risk score for cervical cancer:', risk_score)
+       `# Display the risk score as a percentage
+        st.write('Your risk score for cervical cancer:', f'{risk_percentage:.2f}%')
 
         if risk_score >= 50:
             st.warning('Based on your risk score, you have a relatively higher risk for cervical cancer. Please consult with your healthcare provider for further evaluation and recommendations.')
