@@ -20,9 +20,9 @@ knowledge_base = {
         }
     },
     'safe_sex': {
-        'risk_factor': -1,
+        'risk_factor': 1,
         'rules': {
-            'safe_sex == "No"': -1
+            'safe_sex == "No"': 1
         }
     },
     'smoking': {
@@ -56,9 +56,9 @@ knowledge_base = {
         }
     },
     'physical_activity': {
-        'risk_factor': -1,
+        'risk_factor': 1,
         'rules': {
-            'physical_activity == "Regularly active and engage in physical exercise"': -1
+            'physical_activity == "Sedentary"': 1
         }
     },
     'family_history': {
