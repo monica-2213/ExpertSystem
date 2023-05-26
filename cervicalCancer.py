@@ -124,6 +124,8 @@ knowledge_base = {
 def layout():
     st.title('Cervical Cancer Risk Assessment')
     st.write('<style>h1, p { color: #630d03; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
+    st.write('<style>.stButton button { background-color: #FF0000; }</style>', unsafe_allow_html=True)
+    st.write('<style>.stButton button:hover { background-color: #630d03; color: #ffffff;}</style>', unsafe_allow_html=True)
     st.write('Please provide the following information to assess your risk for cervical cancer.')
 
     # Use columns to display questions and answers side by side
