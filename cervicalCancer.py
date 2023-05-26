@@ -1,5 +1,62 @@
 import streamlit as st
 
+# Define color theme
+primaryColor = "#E694FF"
+backgroundColor = "#00172B"
+secondaryBackgroundColor = "#0083B8"
+textColor = "#C6CDD4"
+font = "sans-serif"
+
+# Apply the color theme to Streamlit
+st.set_page_config(
+    page_title="Cervical Cancer Risk Assessment",
+    page_icon=":female_sign:",
+    layout="centered",
+    initial_sidebar_state="auto",
+)
+
+# Set the CSS style
+st.markdown(
+    f"""
+    <style>
+        body {{
+            color: {textColor};
+            background-color: {backgroundColor};
+            font-family: {font};
+        }}
+        .stButton button,
+        .stTextInput input,
+        .stTextArea textarea,
+        .stNumberInput input,
+        .stSelectbox select,
+        .stRadio input,
+        .stCheckbox input {{
+            color: {textColor};
+            background-color: {secondaryBackgroundColor};
+            font-family: {font};
+        }}
+        .stNumberInput input {{
+            color: {textColor};
+            background-color: {secondaryBackgroundColor};
+            border-color: {primaryColor};
+        }}
+        .stButton button {{
+            background-color: {primaryColor};
+        }}
+        .stTitle {{
+            color: {primaryColor};
+        }}
+        .stWarning {{
+            color: {primaryColor};
+        }}
+        .stSuccess {{
+            color: {primaryColor};
+        }}
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 knowledge_base = {
     'age': {
         'risk_factor': 2,
