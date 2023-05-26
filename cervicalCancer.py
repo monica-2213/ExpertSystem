@@ -127,6 +127,24 @@ def layout():
     st.write('<style>.stButton button { background-color: #FF0000; }</style>', unsafe_allow_html=True)
     st.write('<style>.stButton button:hover { background-color: #630d03; color: #ffffff;}</style>', unsafe_allow_html=True)
     st.write('Please provide the following information to assess your risk for cervical cancer.')
+    
+    # Custom CSS styling for the button
+    button_style = """
+    <style>
+    .my-button {
+        background-color: white;
+        color: #630d03;
+        border: 2px solid #630d03;
+        padding: 0.5em 1em;
+        border-radius: 0.25em;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .my-button:hover {
+        background-color: #630d03;
+        color: white;
+    }
+    </style>
+    """
 
     # Use columns to display questions and answers side by side
     questions = {
