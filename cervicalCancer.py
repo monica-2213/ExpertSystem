@@ -164,67 +164,68 @@ def layout():
         st.markdown('#### Physical Activity')
         physical_activity = st.selectbox('How would you describe your physical activity level?', ['Sedentary', 'Moderately active', 'Regularly active and engage in physical exercise'])
 
-    with st.beta_columns(2):
-        with st.beta_container():
-            st.write('Family History and Medical Conditions')
-            st.markdown('#### Family History')
-            family_history = st.radio('Are there any close relatives (mother, sister, etc.) who have been diagnosed with cervical cancer?', ['Yes', 'No'])
+    col1, col2 = st.beta_columns(2)
 
-            st.markdown('#### Gene Variations')
-            gene_variations = st.radio('Have you been tested for specific gene variations associated with cervical cancer susceptibility?', ['Yes', 'No'])
+    with col1:
+        st.write('Family History and Medical Conditions')
+        st.markdown('#### Family History')
+        family_history = st.radio('Are there any close relatives (mother, sister, etc.) who have been diagnosed with cervical cancer?', ['Yes', 'No'])
 
-            st.markdown('#### Lynch or Cowden Syndrome')
-            lynch_or_cowden_syndrome = st.radio('Have you been diagnosed with Lynch syndrome or Cowden syndrome?', ['Yes', 'No'])
+        st.markdown('#### Gene Variations')
+        gene_variations = st.radio('Have you been tested for specific gene variations associated with cervical cancer susceptibility?', ['Yes', 'No'])
 
-            st.markdown('#### Abnormal Bleeding')
-            abnormal_bleeding = st.radio('Have you experienced abnormal vaginal bleeding?', ['Yes', 'No'])
+        st.markdown('#### Lynch or Cowden Syndrome')
+        lynch_or_cowden_syndrome = st.radio('Have you been diagnosed with Lynch syndrome or Cowden syndrome?', ['Yes', 'No'])
 
-            st.markdown('#### Unusual Discharge')
-            unusual_discharge = st.radio('Have you noticed unusual vaginal discharge that is watery, bloody, or has a foul odor?', ['Yes', 'No'])
+        st.markdown('#### Abnormal Bleeding')
+        abnormal_bleeding = st.radio('Have you experienced abnormal vaginal bleeding?', ['Yes', 'No'])
 
-            st.markdown('#### Pelvic Pain')
-            pelvic_pain = st.radio('Have you been experiencing persistent pelvic pain in the pelvis, lower back, or abdomen?', ['Yes', 'No'])
+        st.markdown('#### Unusual Discharge')
+        unusual_discharge = st.radio('Have you noticed unusual vaginal discharge that is watery, bloody, or has a foul odor?', ['Yes', 'No'])
 
-            st.markdown('#### Pain During Intercourse')
-            pain_during_intercourse = st.radio('Do you experience pain during sexual intercourse (dyspareunia)?', ['Yes', 'No'])
+        st.markdown('#### Pelvic Pain')
+        pelvic_pain = st.radio('Have you been experiencing persistent pelvic pain in the pelvis, lower back, or abdomen?', ['Yes', 'No'])
 
-            st.markdown('#### Urinary Problems')
-            urinary_problems = st.radio('Have you experienced urinary problems such as blood in the urine (hematuria), urinary incontinence, or frequent urination?', ['Yes', 'No'])
+    with col2:
+        st.markdown('#### Pain During Intercourse')
+        pain_during_intercourse = st.radio('Do you experience pain during sexual intercourse (dyspareunia)?', ['Yes', 'No'])
 
-    with st.beta_container():
-        if st.button('Submit'):
-            answers = {
-                'age': age,
-                'multiple_partners': multiple_partners,
-                'early_sexual_activity': early_sexual_activity,
-                'hpv_infection': hpv_infection,
-                'safe_sex': safe_sex,
-                'smoking': smoking,
-                'weakened_immune_system': weakened_immune_system,
-                'long_term_oral_contraceptives': long_term_oral_contraceptives,
-                'diet': diet,
-                'obesity_overweight': obesity_overweight,
-                'physical_activity': physical_activity,
-                'family_history': family_history,
-                'gene_variations': gene_variations,
-                'lynch_or_cowden_syndrome': lynch_or_cowden_syndrome,
-                'abnormal_bleeding': abnormal_bleeding,
-                'unusual_discharge': unusual_discharge,
-                'pelvic_pain': pelvic_pain,
-                'pain_during_intercourse': pain_during_intercourse,
-                'urinary_problems': urinary_problems
-            }
+        st.markdown('#### Urinary Problems')
+        urinary_problems = st.radio('Have you experienced urinary problems such as blood in the urine (hematuria), urinary incontinence, or frequent urination?', ['Yes', 'No'])
 
-            risk_percentage, factor_scores = calculate_risk_score(answers)
-            explanation = generate_explanation(factor_scores)
+    if st.button('Submit'):
+        answers = {
+            'age': age,
+            'multiple_partners': multiple_partners,
+            'early_sexual_activity': early_sexual_activity,
+            'hpv_infection': hpv_infection,
+            'safe_sex': safe_sex,
+            'smoking': smoking,
+            'weakened_immune_system': weakened_immune_system,
+            'long_term_oral_contraceptives': long_term_oral_contraceptives,
+            'diet': diet,
+            'obesity_overweight': obesity_overweight,
+            'physical_activity': physical_activity,
+            'family_history': family_history,
+            'gene_variations': gene_variations,
+            'lynch_or_cowden_syndrome': lynch_or_cowden_syndrome,
+            'abnormal_bleeding': abnormal_bleeding,
+            'unusual_discharge': unusual_discharge,
+            'pelvic_pain': pelvic_pain,
+            'pain_during_intercourse': pain_during_intercourse,
+            'urinary_problems': urinary_problems
+        }
 
-            st.write('Your risk score for cervical cancer:', f'{risk_percentage:.2f}%')
-            if risk_percentage >= 50:
-                st.warning('Based on your risk score, you have a relatively higher risk for cervical cancer. Please consult with your healthcare provider for further evaluation and recommendations.')
-            else:
-                st.success('Based on your risk score, you have a relatively lower risk for cervical cancer. However, it is still important to attend regular screenings and maintain a healthy lifestyle.')
-            st.write('Your risk score is calculated based on various risk factors for cervical cancer. The higher the risk score, the higher the probability of developing cervical cancer. The factors that contributed most to your risk score include...')
-            st.write(explanation)
+        risk_percentage, factor_scores = calculate_risk_score(answers)
+        explanation = generate_explanation(factor_scores)
+
+        st.write('Your risk score for cervical cancer:', f'{risk_percentage:.2f}%')
+        if risk_percentage >= 50:
+            st.warning('Based on your risk score, you have a relatively higher risk for cervical cancer. Please consult with your healthcare provider for further evaluation and recommendations.')
+        else:
+            st.success('Based on your risk score, you have a relatively lower risk for cervical cancer. However, it is still important to attend regular screenings and maintain a healthy lifestyle.')
+        st.write('Your risk score is calculated based on various risk factors for cervical cancer. The higher the risk score, the higher the probability of developing cervical cancer. The factors that contributed most to your risk score include...')
+        st.write(explanation)
 
 
 def calculate_risk_score(answers):
