@@ -120,6 +120,7 @@ knowledge_base = {
     }
 }
 
+#Function for UI
 def layout():
     st.title('Cervical Cancer Risk Assessment')
     
@@ -164,10 +165,7 @@ def layout():
         st.markdown('#### Physical Activity')
         physical_activity = st.selectbox('How would you describe your physical activity level?', ['Sedentary', 'Moderately active', 'Regularly active and engage in physical exercise'])
 
-    col1, col2 = st.beta_columns(2)
-
-    with col1:
-        st.write('Family History and Medical Conditions')
+    with st.beta_expander('Family History and Medical Conditions'):
         st.markdown('#### Family History')
         family_history = st.radio('Are there any close relatives (mother, sister, etc.) who have been diagnosed with cervical cancer?', ['Yes', 'No'])
 
@@ -186,7 +184,6 @@ def layout():
         st.markdown('#### Pelvic Pain')
         pelvic_pain = st.radio('Have you been experiencing persistent pelvic pain in the pelvis, lower back, or abdomen?', ['Yes', 'No'])
 
-    with col2:
         st.markdown('#### Pain During Intercourse')
         pain_during_intercourse = st.radio('Do you experience pain during sexual intercourse (dyspareunia)?', ['Yes', 'No'])
 
@@ -226,8 +223,9 @@ def layout():
             st.success('Based on your risk score, you have a relatively lower risk for cervical cancer. However, it is still important to attend regular screenings and maintain a healthy lifestyle.')
         st.write('Your risk score is calculated based on various risk factors for cervical cancer. The higher the risk score, the higher the probability of developing cervical cancer. The factors that contributed most to your risk score include...')
         st.write(explanation)
+        
 
-
+#Function to calculate the risk score/percentage
 def calculate_risk_score(answers):
     total_score = 0
     max_score = 0
