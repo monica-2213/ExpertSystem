@@ -136,10 +136,10 @@ def layout():
                 else:
                     answers[key] = st.radio(question, ['Yes', 'No'])
 
+            submitted = st.form_submit_button('Submit')
+
         with col2:
             st.write("Please answer the questions to calculate your risk score.")
-
-        submitted = st.form_submit_button('Submit')
 
     if submitted:
         risk_percentage, factor_scores = calculate_risk_score(answers)
