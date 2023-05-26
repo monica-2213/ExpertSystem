@@ -120,11 +120,10 @@ knowledge_base = {
     }
 }
 
-# Define the layout using Streamlit's layout components
 def layout():
     st.title('Cervical Cancer Risk Assessment')
     
-    st.write('<style>h1, p { color: #630d03; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
+    st.markdown('<style>h1, p { color: #630d03; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     
     st.header('Please provide the following information to assess your risk for cervical cancer.')
 
