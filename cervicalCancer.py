@@ -27,9 +27,9 @@ knowledge_base = {
         }
     },
     'safe_sex': {
-        'risk_factor': 0,
+        'risk_factor': 2,
         'rules': {
-            'safe_sex == "No"': 0
+            'safe_sex == "No"': 2
         }
     },
     'smoking': {
@@ -63,10 +63,10 @@ knowledge_base = {
         }
     },
     'physical_activity': {
-        'risk_factor': 0,
+        'risk_factor': 2,
         'rules': {
-            'physical_activity == "Sedentary"': 0,
-            'physical_activity == "Moderately active"': 0,
+            'physical_activity == "Sedentary"': 2,
+            'physical_activity == "Moderately active"': 1,
             'physical_activity == "Regularly active and engage in physical exercise"': 0
         }
     },
