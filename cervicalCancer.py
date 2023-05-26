@@ -188,9 +188,8 @@ def calculate_risk_score(answers):
             max_score += factor_data['risk_factor']
             for rule, score in factor_data['rules'].items():
                 if eval(rule, {'__builtins__': None}, answers):
-                    max_score += score
-                    total_score += score
-                    factor_scores[factor] = factor_scores.get(factor, 0) + score
+                    total_score += factor_data['risk_factor']
+                    factor_scores[factor] = factor_scores.get(factor, 0) + factor_data['risk_factor']
 
     risk_percentage = (total_score / max_score) * 100
     return risk_percentage, factor_scores
