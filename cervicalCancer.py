@@ -123,7 +123,7 @@ knowledge_base = {
 # Define the layout using Streamlit's layout components
 def layout():
     st.title('Cervical Cancer Risk Assessment')
-    st.write('<style>h1, p { color: #630d03; }</style>', unsafe_allow_html=True)
+    st.write('<style>h1, p { color: #630d03; font-size: 16px; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     st.write('Please provide the following information to assess your risk for cervical cancer.')
 
     # Use columns to display questions and answers side by side
