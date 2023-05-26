@@ -165,7 +165,7 @@ def layout():
         st.markdown('#### Physical Activity')
         physical_activity = st.selectbox('How would you describe your physical activity level?', ['Sedentary', 'Moderately active', 'Regularly active and engage in physical exercise'])
 
-    with st.betacolumn('Family History and Medical Conditions'):
+    with st.beta_column('Family History and Medical Conditions'):
         st.markdown('#### Family History')
         family_history = st.radio('Are there any close relatives (mother, sister, etc.) who have been diagnosed with cervical cancer?', ['Yes', 'No'])
 
