@@ -165,30 +165,32 @@ def layout():
         st.markdown('#### Physical Activity')
         physical_activity = st.selectbox('How would you describe your physical activity level?', ['Sedentary', 'Moderately active', 'Regularly active and engage in physical exercise'])
 
-    with st.beta_column('Family History and Medical Conditions'):
-        st.markdown('#### Family History')
-        family_history = st.radio('Are there any close relatives (mother, sister, etc.) who have been diagnosed with cervical cancer?', ['Yes', 'No'])
+    with st.beta_columns(2):
+        with st.beta_container():
+            st.write('Family History and Medical Conditions')
+            st.markdown('#### Family History')
+            family_history = st.radio('Are there any close relatives (mother, sister, etc.) who have been diagnosed with cervical cancer?', ['Yes', 'No'])
 
-        st.markdown('#### Gene Variations')
-        gene_variations = st.radio('Have you been tested for specific gene variations associated with cervical cancer susceptibility?', ['Yes', 'No'])
+            st.markdown('#### Gene Variations')
+            gene_variations = st.radio('Have you been tested for specific gene variations associated with cervical cancer susceptibility?', ['Yes', 'No'])
 
-        st.markdown('#### Lynch or Cowden Syndrome')
-        lynch_or_cowden_syndrome = st.radio('Have you been diagnosed with Lynch syndrome or Cowden syndrome?', ['Yes', 'No'])
+            st.markdown('#### Lynch or Cowden Syndrome')
+            lynch_or_cowden_syndrome = st.radio('Have you been diagnosed with Lynch syndrome or Cowden syndrome?', ['Yes', 'No'])
 
-        st.markdown('#### Abnormal Bleeding')
-        abnormal_bleeding = st.radio('Have you experienced abnormal vaginal bleeding?', ['Yes', 'No'])
+            st.markdown('#### Abnormal Bleeding')
+            abnormal_bleeding = st.radio('Have you experienced abnormal vaginal bleeding?', ['Yes', 'No'])
 
-        st.markdown('#### Unusual Discharge')
-        unusual_discharge = st.radio('Have you noticed unusual vaginal discharge that is watery, bloody, or has a foul odor?', ['Yes', 'No'])
+            st.markdown('#### Unusual Discharge')
+            unusual_discharge = st.radio('Have you noticed unusual vaginal discharge that is watery, bloody, or has a foul odor?', ['Yes', 'No'])
 
-        st.markdown('#### Pelvic Pain')
-        pelvic_pain = st.radio('Have you been experiencing persistent pelvic pain in the pelvis, lower back, or abdomen?', ['Yes', 'No'])
+            st.markdown('#### Pelvic Pain')
+            pelvic_pain = st.radio('Have you been experiencing persistent pelvic pain in the pelvis, lower back, or abdomen?', ['Yes', 'No'])
 
-        st.markdown('#### Pain During Intercourse')
-        pain_during_intercourse = st.radio('Do you experience pain during sexual intercourse (dyspareunia)?', ['Yes', 'No'])
+            st.markdown('#### Pain During Intercourse')
+            pain_during_intercourse = st.radio('Do you experience pain during sexual intercourse (dyspareunia)?', ['Yes', 'No'])
 
-        st.markdown('#### Urinary Problems')
-        urinary_problems = st.radio('Have you experienced urinary problems such as blood in the urine (hematuria), urinary incontinence, or frequent urination?', ['Yes', 'No'])
+            st.markdown('#### Urinary Problems')
+            urinary_problems = st.radio('Have you experienced urinary problems such as blood in the urine (hematuria), urinary incontinence, or frequent urination?', ['Yes', 'No'])
 
     with st.beta_container():
         if st.button('Submit'):
