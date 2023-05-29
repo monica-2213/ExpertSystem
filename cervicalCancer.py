@@ -127,6 +127,7 @@ def layout():
     st.markdown('<style>h1, p { color: #003744; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     st.markdown('<style>h2, p { color: #B72552; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     st.markdown('<style>p, p { color: #7F1330; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
+    st.markdown('<style>button, p { background-color: #FFEEE3; color: #7F1330; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     
     st.header('Please provide the following information to assess your risk for cervical cancer.')
 
@@ -191,27 +192,6 @@ def layout():
 
         st.markdown('#### Urinary Problems')
         urinary_problems = st.radio('Have you experienced urinary problems such as blood in the urine (hematuria), urinary incontinence, or frequent urination?', ['Yes', 'No'])
-
-        
-    st.markdown(
-    """
-    <style>
-    .st-DLhsoa.st-eb button {
-        background-color: #B72552;
-        color: white;
-        padding: 0.75em 1em;
-        border-radius: 0.25em;
-        border: none;
-        cursor: pointer;
-    }
-
-    .st-DLhsoa.st-eb button:hover {
-        background-color: #7F1330;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-    )
     
     if st.button('Submit'):
         answers = {
