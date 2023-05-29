@@ -219,7 +219,7 @@ def layout():
         
         risk_percentage, factor_scores = calculate_risk_score(answers)
         explanation = generate_explanation(factor_scores, total_score)
-
+        
         st.write('Your risk score for cervical cancer:', f'{risk_percentage:.2f}%')
         if risk_percentage >= 50:
             st.warning('Based on your risk score, you have a relatively higher risk for cervical cancer. Please consult with your healthcare provider for further evaluation and recommendations.')
