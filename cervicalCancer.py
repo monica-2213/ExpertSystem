@@ -126,9 +126,9 @@ knowledge_base = {
 def layout():
     st.title('Cervical Cancer Risk Assessment')
     
-    st.markdown('<style>h1, p { color: #003744; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
-    st.markdown('<style>h2, p { color: #B72552; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
-    st.markdown('<style>p, p { color: #7F1330; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
+    st.markdown('<style>h1, p { color: #08565E; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
+    st.markdown('<style>h2, p { color: #218692; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
+    st.markdown('<style>p, p { color: #00444B; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     
     st.header('Please provide the following information to assess your risk for cervical cancer.')
 
