@@ -218,7 +218,7 @@ def layout():
         }
         
         risk_percentage, factor_scores = calculate_risk_score(answers)
-        explanation = generate_explanation(factor_scores)
+        explanation = generate_explanation(factor_scores, total_score)
 
         st.write('Your risk score for cervical cancer:', f'{risk_percentage:.2f}%')
         if risk_percentage >= 50:
@@ -250,7 +250,7 @@ def calculate_risk_score(answers):
                     factor_scores[factor] = factor_scores.get(factor, 0) + factor_data['risk_factor']
 
     risk_percentage = (total_score / max_score) * 100
-    explanation = generate_explanation(factor_scores, total_score)  # Pass total_score as an argument
+    explanation = generate_explanation(factor_scores, total_score)
 
     return risk_percentage, factor_scores
 
