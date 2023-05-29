@@ -224,6 +224,10 @@ def layout():
         st.write('Your risk score is calculated based on various risk factors for cervical cancer. The higher the risk score, the higher the probability of developing cervical cancer. The factors that contributed most to your risk score include...')
         st.write(explanation)
         
+        recommend_medical_tests()
+        provide_treatment_recommendations()
+        provide_helplines()
+        
 
 #Function to calculate the risk score/percentage
 def calculate_risk_score(answers):
@@ -270,9 +274,6 @@ def provide_helplines():
     
 def main():
     layout()
-    recommend_medical_tests()
-    provide_treatment_recommendations()
-    provide_helplines()
     
 if __name__ == '__main__':
     main()
