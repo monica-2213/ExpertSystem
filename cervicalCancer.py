@@ -65,7 +65,7 @@ knowledge_base = {
         }
     },
     'physical_activity': {
-        'risk_factor': 0,
+        'risk_factor': 2,
         'rules': {
             'physical_activity == "Sedentary"': 2,
             'physical_activity == "Moderately active"': 1,
