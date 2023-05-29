@@ -192,6 +192,27 @@ def layout():
         st.markdown('#### Urinary Problems')
         urinary_problems = st.radio('Have you experienced urinary problems such as blood in the urine (hematuria), urinary incontinence, or frequent urination?', ['Yes', 'No'])
 
+        
+    st.markdown(
+    """
+    <style>
+    .st-DLhsoa.st-eb button {
+        background-color: #B72552;
+        color: white;
+        padding: 0.75em 1em;
+        border-radius: 0.25em;
+        border: none;
+        cursor: pointer;
+    }
+
+    .st-DLhsoa.st-eb button:hover {
+        background-color: #7F1330;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+    )
+    
     if st.button('Submit'):
         answers = {
             'age': age,
@@ -215,27 +236,6 @@ def layout():
             'urinary_problems': urinary_problems
         }
         
-    st.markdown(
-        """
-        <style>
-        .st-DLhsoa.st-eb button {
-            background-color: #B72552;
-            color: white;
-            padding: 0.75em 1em;
-            border-radius: 0.25em;
-            border: none;
-            cursor: pointer;
-        }
-
-        .st-DLhsoa.st-eb button:hover {
-            background-color: #7F1330;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
-
         risk_percentage, factor_scores = calculate_risk_score(answers)
         explanation = generate_explanation(factor_scores)
 
