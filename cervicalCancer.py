@@ -250,7 +250,7 @@ def calculate_risk_score(answers):
                     factor_scores[factor] = factor_scores.get(factor, 0) + factor_data['risk_factor']
 
     risk_percentage = (total_score / max_score) * 100
-    explanation = generate_explanation(factor_scores)
+    explanation = generate_explanation(factor_scores, total_score)  # Pass total_score as an argument
 
     return risk_percentage, factor_scores
 
