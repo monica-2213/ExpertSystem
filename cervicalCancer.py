@@ -124,6 +124,7 @@ knowledge_base = {
 def layout():
     st.title('Cervical Cancer Risk Assessment')
     
+    st.markdown('<style>body { background-color: #FFEEE3; }</style>', unsafe_allow_html=True)
     st.markdown('<style>h1, p { color: #003744; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     st.markdown('<style>h2, p { color: #B72552; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     st.markdown('<style>p, p { color: #7F1330; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
