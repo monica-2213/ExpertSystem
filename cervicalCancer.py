@@ -227,6 +227,7 @@ def layout():
             st.success('Based on your risk score, you have a relatively lower risk for cervical cancer. However, it is still important to attend regular screenings and maintain a healthy lifestyle.')
         st.write('Your risk score is calculated based on various risk factors for cervical cancer. The higher the risk score, the higher the probability of developing cervical cancer. The factors that contributed most to your risk score include...')
         st.write(explanation)
+
         
         recommend_medical_tests()
         provide_treatment_recommendations()
@@ -249,13 +250,17 @@ def calculate_risk_score(answers):
                     factor_scores[factor] = factor_scores.get(factor, 0) + factor_data['risk_factor']
 
     risk_percentage = (total_score / max_score) * 100
+    risk_percentage, factor_scores = calculate_risk_score(answers)
+    explanation = generate_explanation(factor_scores, total_score)
+
     return risk_percentage, factor_scores
 
 
-def generate_explanation(factor_scores):
+def generate_explanation(factor_scores, total_score):
     explanation = "Factors contributing to your risk score:\n"
     for factor, score in factor_scores.items():
-        explanation += f"- {factor}: {score}\n"
+        percentage = (score / total_score) * 100
+        explanation += f"- {factor}: {score} ({percentage:.2f}%)\n"
     return explanation
 
 def recommend_medical_tests():
