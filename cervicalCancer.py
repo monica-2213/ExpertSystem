@@ -234,7 +234,7 @@ def layout():
         provide_helplines()
         
 
-#Function to calculate the risk score/percentage
+# Function to calculate the risk score/percentage
 def calculate_risk_score(answers):
     total_score = 0
     max_score = 0
@@ -250,8 +250,7 @@ def calculate_risk_score(answers):
                     factor_scores[factor] = factor_scores.get(factor, 0) + factor_data['risk_factor']
 
     risk_percentage = (total_score / max_score) * 100
-    risk_percentage, factor_scores = calculate_risk_score(answers)
-    explanation = generate_explanation(factor_scores, total_score)
+    explanation = generate_explanation(factor_scores)
 
     return risk_percentage, factor_scores
 
