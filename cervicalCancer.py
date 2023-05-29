@@ -124,7 +124,8 @@ knowledge_base = {
 def layout():
     st.title('Cervical Cancer Risk Assessment')
     
-    st.markdown('<style>h1, p { color: #630d03; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
+    st.markdown('<style>h1, p { color: #009688; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
+    st.markdown('<style>h2, p { color: #960069; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     
     st.header('Please provide the following information to assess your risk for cervical cancer.')
 
