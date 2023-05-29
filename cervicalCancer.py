@@ -124,19 +124,6 @@ knowledge_base = {
 def layout():
     st.title('Cervical Cancer Risk Assessment')
     
-    # Set background color
-    page_bg_color = '#FFEEE3'
-    st.markdown(
-        f"""
-        <style>
-        .reportview-container {{
-            background-color: {page_bg_color};
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
     st.markdown('<style>h1, p { color: #003744; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     st.markdown('<style>h2, p { color: #B72552; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     st.markdown('<style>p, p { color: #7F1330; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
@@ -227,6 +214,27 @@ def layout():
             'pain_during_intercourse': pain_during_intercourse,
             'urinary_problems': urinary_problems
         }
+        
+        st.markdown(
+            """
+            <style>
+            .stButton button {
+                background-color: #B72552;
+                color: white;
+                padding: 0.75em 1em;
+                border-radius: 0.25em;
+                border: none;
+                cursor: pointer;
+            }
+
+            .stButton button:hover {
+                background-color: #7F1330;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+
 
         risk_percentage, factor_scores = calculate_risk_score(answers)
         explanation = generate_explanation(factor_scores)
