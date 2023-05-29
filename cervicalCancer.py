@@ -1,5 +1,7 @@
 import streamlit as st
 
+st.beta_set_page_config(page_icon="https://example.com/path/to/icon.png")
+
 knowledge_base = {
     'age': {
         'risk_factor': 2,
