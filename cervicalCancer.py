@@ -262,6 +262,7 @@ def generate_explanation(factor_scores, total_score):
         explanation += f"- {factor}: {score} ({percentage:.2f}%)\n"
     return explanation
 
+
 def recommend_medical_tests():
     st.header('Recommended Medical Tests and Screenings')
     st.markdown('- Pap test: Recommended for all individuals with a cervix, starting at the age of 21 or within 3 years of becoming sexually active. It should be repeated every 3 years for individuals aged 21-65 who have a normal result.')
