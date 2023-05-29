@@ -122,6 +122,35 @@ knowledge_base = {
     }
 }
 
+# Function to calculate the risk score/percentage
+def calculate_risk_score(answers):
+    total_score = 0
+    max_score = 0
+    factor_scores = {}
+
+    for factor, value in answers.items():
+        if factor in knowledge_base:
+            factor_data = knowledge_base[factor]
+            max_score += factor_data['risk_factor']
+            for rule, score in factor_data['rules'].items():
+                if eval(rule, {'__builtins__': None}, answers):
+                    total_score += factor_data['risk_factor']
+                    factor_scores[factor] = factor_scores.get(factor, 0) + factor_data['risk_factor']
+
+    risk_percentage = (total_score / max_score) * 100
+    explanation = generate_explanation(factor_scores, total_score)
+
+    return risk_percentage, factor_scores
+
+
+def generate_explanation(factor_scores, total_score):
+    explanation = "Factors contributing to your risk score:\n"
+    for factor, score in factor_scores.items():
+        percentage = (score / total_score) * 100
+        explanation += f"- {factor}: {score} ({percentage:.2f}%)\n"
+    return explanation
+
+
 #Function for UI
 def layout():
     st.title('Cervical Cancer Risk Assessment')
@@ -232,35 +261,6 @@ def layout():
         recommend_medical_tests()
         provide_treatment_recommendations()
         provide_helplines()
-        
-
-# Function to calculate the risk score/percentage
-def calculate_risk_score(answers):
-    total_score = 0
-    max_score = 0
-    factor_scores = {}
-
-    for factor, value in answers.items():
-        if factor in knowledge_base:
-            factor_data = knowledge_base[factor]
-            max_score += factor_data['risk_factor']
-            for rule, score in factor_data['rules'].items():
-                if eval(rule, {'__builtins__': None}, answers):
-                    total_score += factor_data['risk_factor']
-                    factor_scores[factor] = factor_scores.get(factor, 0) + factor_data['risk_factor']
-
-    risk_percentage = (total_score / max_score) * 100
-    explanation = generate_explanation(factor_scores, total_score)
-
-    return risk_percentage, factor_scores
-
-
-def generate_explanation(factor_scores, total_score):
-    explanation = "Factors contributing to your risk score:\n"
-    for factor, score in factor_scores.items():
-        percentage = (score / total_score) * 100
-        explanation += f"- {factor}: {score} ({percentage:.2f}%)\n"
-    return explanation
 
 
 def recommend_medical_tests():
