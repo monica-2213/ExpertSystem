@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.beta_set_page_config(page_icon="https://example.com/path/to/icon.png")
+st.beta_set_page_config(page_icon="hhttps://w7.pngwing.com/pngs/583/500/png-transparent-cervical-cancer-screening-cervix-prevent-cancer.png")
 
 knowledge_base = {
     'age': {
