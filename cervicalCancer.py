@@ -215,25 +215,25 @@ def layout():
             'urinary_problems': urinary_problems
         }
         
-        st.markdown(
-            """
-            <style>
-            .stButton button {
-                background-color: #B72552;
-                color: white;
-                padding: 0.75em 1em;
-                border-radius: 0.25em;
-                border: none;
-                cursor: pointer;
-            }
+    st.markdown(
+        """
+        <style>
+        .st-DLhsoa.st-eb button {
+            background-color: #B72552;
+            color: white;
+            padding: 0.75em 1em;
+            border-radius: 0.25em;
+            border: none;
+            cursor: pointer;
+        }
 
-            .stButton button:hover {
-                background-color: #7F1330;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
+        .st-DLhsoa.st-eb button:hover {
+            background-color: #7F1330;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
 
         risk_percentage, factor_scores = calculate_risk_score(answers)
