@@ -3,20 +3,43 @@ import pandas as pd
 
 st.set_page_config(page_icon="https://w7.pngwing.com/pngs/583/500/png-transparent-cervical-cancer-screening-cervix-prevent-cancer.png")
 
-# Load knowledge base from CSV
-knowledge_base = pd.read_csv('knowledge_base.csv')
+# Load knowledge base from CSV file
+def load_knowledge_base(filename):
+    df = pd.read_csv(filename)
+    knowledge_base = {}
+    for _, row in df.iterrows():
+        factor = row['factor']
+        risk_factor = row['risk_factor']
+        rule = row['rule']
+        if factor not in knowledge_base:
+            knowledge_base[factor] = {
+                'risk_factor': risk_factor,
+                'rules': {}
+            }
+        knowledge_base[factor]['rules'][rule] = risk_factor
+    return knowledge_base
+
+# Save knowledge base to CSV file
+def save_knowledge_base(knowledge_base, filename):
+    rows = []
+    for factor, data in knowledge_base.items():
+        risk_factor = data['risk_factor']
+        for rule, score in data['rules'].items():
+            rows.append([factor, risk_factor, rule])
+    df = pd.DataFrame(rows, columns=['factor', 'risk_factor', 'rule'])
+    df.to_csv(filename, index=False)
 
 # Function to calculate the risk score/percentage
-def calculate_risk_score(answers):
+def calculate_risk_score(answers, knowledge_base):
     total_score = 0
     max_score = 0
     factor_scores = {}
 
     for factor, value in answers.items():
-        if factor in knowledge_base['factor'].values:
-            factor_data = knowledge_base[knowledge_base['factor'] == factor].iloc[0]
+        if factor in knowledge_base:
+            factor_data = knowledge_base[factor]
             max_score += factor_data['risk_factor']
-            for rule, score in factor_data.items()[2:]:
+            for rule, score in factor_data['rules'].items():
                 if eval(rule, {'__builtins__': None}, answers):
                     total_score += factor_data['risk_factor']
                     factor_scores[factor] = factor_scores.get(factor, 0) + factor_data['risk_factor']
@@ -24,7 +47,7 @@ def calculate_risk_score(answers):
     risk_percentage = (total_score / max_score) * 100
     return risk_percentage, factor_scores, total_score
 
-
+# Function to generate explanation of risk factors
 def generate_explanation(factor_scores, total_score):
     explanation = "Factors contributing to your risk score:\n"
     for factor, score in factor_scores.items():
@@ -32,16 +55,19 @@ def generate_explanation(factor_scores, total_score):
         explanation += f"- {factor}: {score} ({percentage:.2f}%)\n"
     return explanation
 
-
-#Function for UI
+# Function for UI
 def layout():
     st.title('Cervical Cancer Risk Assessment')
-    
+
     st.markdown('<style>h1, p { color: #08565E; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     st.markdown('<style>h2, p { color: #218692; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     st.markdown('<style>p, p { color: #00444B; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
-    
+
     st.header('Please provide the following information to assess your risk for cervical cancer.')
+
+    # Load knowledge base from CSV file
+    knowledge_base_file = 'knowledge_base.csv'
+    knowledge_base = load_knowledge_base(knowledge_base_file)
 
     # Use beta_expander to collapse and expand sections
     with st.beta_expander('Demographics'):
