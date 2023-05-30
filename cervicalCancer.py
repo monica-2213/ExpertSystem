@@ -1,36 +1,129 @@
 import streamlit as st
-import pandas as pd
 
 st.set_page_config(page_icon="https://w7.pngwing.com/pngs/583/500/png-transparent-cervical-cancer-screening-cervix-prevent-cancer.png")
 
-# Load knowledge base from CSV file
-def load_knowledge_base(filename):
-    df = pd.read_csv(filename)
-    knowledge_base = {}
-    for _, row in df.iterrows():
-        factor = row['factor']
-        risk_factor = row['risk_factor']
-        rule = row['rule']
-        if factor not in knowledge_base:
-            knowledge_base[factor] = {
-                'risk_factor': risk_factor,
-                'rules': {}
-            }
-        knowledge_base[factor]['rules'][rule] = risk_factor
-    return knowledge_base
-
-# Save knowledge base to CSV file
-def save_knowledge_base(knowledge_base, filename):
-    rows = []
-    for factor, data in knowledge_base.items():
-        risk_factor = data['risk_factor']
-        for rule, score in data['rules'].items():
-            rows.append([factor, risk_factor, rule])
-    df = pd.DataFrame(rows, columns=['factor', 'risk_factor', 'rule'])
-    df.to_csv(filename, index=False)
+knowledge_base = {
+    'age': {
+        'risk_factor': 2,
+        'rules': {
+            'age >= 60': 0,
+            'age >= 35 and age <= 44': 2
+        }
+    },
+    'multiple_partners': {
+        'risk_factor': 2,
+        'rules': {
+            'multiple_partners == "Yes"': 2
+        }
+    },
+    'early_sexual_activity': {
+        'risk_factor': 2,
+        'rules': {
+            'early_sexual_activity == "Yes"': 2
+        }
+    },
+    'hpv_infection': {
+        'risk_factor': 2,
+        'rules': {
+            'hpv_infection == "Yes"': 2
+        }
+    },
+    'safe_sex': {
+        'risk_factor': 2,
+        'rules': {
+            'safe_sex == "No"': 2
+        }
+    },
+    'smoking': {
+        'risk_factor': 2,
+        'rules': {
+            'smoking == "Yes"': 2
+        }
+    },
+    'weakened_immune_system': {
+        'risk_factor': 2,
+        'rules': {
+            'weakened_immune_system == "Yes"': 2
+        }
+    },
+    'long_term_oral_contraceptives': {
+        'risk_factor': 2,
+        'rules': {
+            'long_term_oral_contraceptives == "Yes"': 2
+        }
+    },
+    'diet': {
+        'risk_factor': 2,
+        'rules': {
+            'diet == "Low in fruits and vegetables, high in processed foods"': 2
+        }
+    },
+    'obesity_overweight': {
+        'risk_factor': 2,
+        'rules': {
+            'obesity_overweight == "Yes"': 2
+        }
+    },
+    'physical_activity': {
+        'risk_factor': 2,
+        'rules': {
+            'physical_activity == "Sedentary"': 2,
+            'physical_activity == "Moderately active"': 1,
+            'physical_activity == "Regularly active and engage in physical exercise"': 0
+        }
+    },
+    'family_history': {
+        'risk_factor': 2,
+        'rules': {
+            'family_history == "Yes"': 2
+        }
+    },
+    'gene_variations': {
+        'risk_factor': 2,
+        'rules': {
+            'gene_variations == "Yes"': 2
+        }
+    },
+    'lynch_or_cowden_syndrome': {
+        'risk_factor': 2,
+        'rules': {
+            'lynch_or_cowden_syndrome == "Yes"': 2
+        }
+    },
+    'abnormal_bleeding': {
+        'risk_factor': 2,
+        'rules': {
+            'abnormal_bleeding == "Yes"': 2
+        }
+    },
+    'unusual_discharge': {
+        'risk_factor': 2,
+        'rules': {
+            'unusual_discharge == "Yes"': 2
+        }
+    },
+    'pelvic_pain': {
+        'risk_factor': 2,
+        'rules': {
+            'pelvic_pain == "Yes"': 2
+        }
+    },
+    'pain_during_intercourse': {
+        'risk_factor': 2,
+        'rules': {
+            'pain_during_intercourse == "Yes"': 2
+        }
+    },
+    'urinary_problems': {
+        'risk_factor': 2,
+        'rules': {
+            'urinary_problems == "Yes"': 2
+        }
+    }
+}
 
 # Function to calculate the risk score/percentage
-def calculate_risk_score(answers, knowledge_base):
+def calculate_risk_score(answers):
     total_score = 0
     max_score = 0
     factor_scores = {}
@@ -47,7 +140,7 @@ def calculate_risk_score(answers, knowledge_base):
     risk_percentage = (total_score / max_score) * 100
     return risk_percentage, factor_scores, total_score
 
-# Function to generate explanation of risk factors
+
 def generate_explanation(factor_scores, total_score):
     explanation = "Factors contributing to your risk score:\n"
     for factor, score in factor_scores.items():
@@ -55,19 +148,16 @@ def generate_explanation(factor_scores, total_score):
         explanation += f"- {factor}: {score} ({percentage:.2f}%)\n"
     return explanation
 
-# Function for UI
+
+#Function for UI
 def layout():
     st.title('Cervical Cancer Risk Assessment')
-
+    
     st.markdown('<style>h1, p { color: #08565E; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     st.markdown('<style>h2, p { color: #218692; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     st.markdown('<style>p, p { color: #00444B; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
-
+    
     st.header('Please provide the following information to assess your risk for cervical cancer.')
-
-    # Load knowledge base from CSV file
-    knowledge_base_file = 'knowledge_base.csv'
-    knowledge_base = load_knowledge_base(knowledge_base_file)
 
     # Use beta_expander to collapse and expand sections
     with st.beta_expander('Demographics'):
