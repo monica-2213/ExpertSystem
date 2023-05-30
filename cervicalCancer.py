@@ -1,7 +1,11 @@
 import streamlit as st
+import json
+
+# Load knowledge base from JSON file
+with open('knowledge_base.json', 'r') as file:
+    knowledge_base = json.load(file)
 
 st.set_page_config(page_icon="https://w7.pngwing.com/pngs/583/500/png-transparent-cervical-cancer-screening-cervix-prevent-cancer.png")
-
 
 # Function to calculate the risk score/percentage
 def calculate_risk_score(answers):
