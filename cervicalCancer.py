@@ -4,7 +4,7 @@ import json
 st.set_page_config(page_icon="https://w7.pngwing.com/pngs/583/500/png-transparent-cervical-cancer-screening-cervix-prevent-cancer.png")
 
 # Load knowledge base from a JSON file
-def load_knowledge_base('knowledge_base.json'):
+def load_knowledge_base(knowledge_base.json):
     with open('knowledge_base.json', 'r') as file:
         return json.load(file)
 
