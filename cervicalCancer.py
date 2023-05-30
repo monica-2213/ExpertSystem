@@ -1,43 +1,25 @@
 import streamlit as st
-import csv
+import pandas as pd
 
 st.set_page_config(page_icon="https://w7.pngwing.com/pngs/583/500/png-transparent-cervical-cancer-screening-cervix-prevent-cancer.png")
 
-def load_knowledge_base():
-    knowledge_base = {}
-    with open('knowledge_base.csv', 'r') as file:
-        reader = csv.reader(file)
-        next(reader)  # Skip the header row
-        
-        # Read each row and populate the knowledge base dictionary
-        for row in reader:
-            factor = row[0]
-            risk_factor = int(row[1])
-            rule = row[2]
-            score = int(row[3])
-            
-            if factor not in knowledge_base:
-                knowledge_base[factor] = {'risk_factor': risk_factor, 'rules': {}}
-            
-            knowledge_base[factor]['rules'][rule] = score
-    
-    return knowledge_base
-
+# Load knowledge base from CSV
+knowledge_base = pd.read_csv('knowledge_base.csv')
 
 # Function to calculate the risk score/percentage
-def calculate_risk_score(answers, knowledge_base):
+def calculate_risk_score(answers):
     total_score = 0
     max_score = 0
     factor_scores = {}
 
     for factor, value in answers.items():
-        if factor in knowledge_base:
-            factor_data = knowledge_base[factor]
-            max_score += factor_data['risk_factor']
-            for rule, score in factor_data['rules'].items():
+        if factor in knowledge_base['Factor'].values:
+            factor_data = knowledge_base[knowledge_base['Factor'] == factor].iloc[0]
+            max_score += factor_data['Risk_Factor']
+            for rule, score in factor_data.items()[2:]:
                 if eval(rule, {'__builtins__': None}, answers):
-                    total_score += factor_data['risk_factor']
-                    factor_scores[factor] = factor_scores.get(factor, 0) + factor_data['risk_factor']
+                    total_score += factor_data['Risk_Factor']
+                    factor_scores[factor] = factor_scores.get(factor, 0) + factor_data['Risk_Factor']
 
     risk_percentage = (total_score / max_score) * 100
     return risk_percentage, factor_scores, total_score
@@ -146,7 +128,7 @@ def layout():
             'urinary_problems': urinary_problems
         }
         
-        risk_percentage, factor_scores, total_score = calculate_risk_score(answers, knowledge_base)  # Pass the knowledge_base argument
+        risk_percentage, factor_scores, total_score = calculate_risk_score(answers)
         explanation = generate_explanation(factor_scores, total_score)
         
         st.write('Your risk score for cervical cancer:', f'{risk_percentage:.2f}%')
@@ -181,8 +163,6 @@ def provide_helplines():
 
     
 def main():
-    # Load the knowledge base from the CSV file
-    knowledge_base = load_knowledge_base()
     layout()
     
 if __name__ == '__main__':
