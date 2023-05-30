@@ -5,11 +5,10 @@ st.set_page_config(page_icon="https://w7.pngwing.com/pngs/583/500/png-transparen
 
 # Load knowledge base from a JSON file
 def load_knowledge_base(file_name):
-    with open(file_name, 'r') as file:
+    with open(file_name, 'r', encoding='utf-8') as file:
         return json.load(file)
 
 knowledge_base = load_knowledge_base('knowledge_base.json')
-st.write(knowledge_base)
 
 # Function to calculate the risk score/percentage
 def calculate_risk_score(answers):
