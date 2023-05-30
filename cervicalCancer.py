@@ -3,6 +3,22 @@ import csv
 
 st.set_page_config(page_icon="https://w7.pngwing.com/pngs/583/500/png-transparent-cervical-cancer-screening-cervix-prevent-cancer.png")
 
+# Create a new CSV file
+with open('knowledge_base.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    
+    # Write the header row
+    writer.writerow(['factor', 'risk_factor', 'rule', 'score'])
+    
+    # Write the knowledge base data
+    for factor, factor_data in knowledge_base.items():
+        risk_factor = factor_data['risk_factor']
+        rules = factor_data['rules']
+        
+        # Write each rule and its associated score
+        for rule, score in rules.items():
+            writer.writerow([factor, risk_factor, rule, score])
+
 knowledge_base = {
     'age': {
         'risk_factor': 2,
@@ -123,8 +139,29 @@ knowledge_base = {
     }
 }
 
+def load_knowledge_base():
+    knowledge_base = {}
+    with open('knowledge_base.csv', 'r') as file:
+        reader = csv.reader(file)
+        next(reader)  # Skip the header row
+        
+        # Read each row and populate the knowledge base dictionary
+        for row in reader:
+            factor = row[0]
+            risk_factor = int(row[1])
+            rule = row[2]
+            score = int(row[3])
+            
+            if factor not in knowledge_base:
+                knowledge_base[factor] = {'risk_factor': risk_factor, 'rules': {}}
+            
+            knowledge_base[factor]['rules'][rule] = score
+    
+    return knowledge_base
+
+
 # Function to calculate the risk score/percentage
-def calculate_risk_score(answers):
+def calculate_risk_score(answers, knowledge_base):
     total_score = 0
     max_score = 0
     factor_scores = {}
@@ -280,6 +317,8 @@ def provide_helplines():
 
     
 def main():
+    # Load the knowledge base from the CSV file
+    knowledge_base = load_knowledge_base()
     layout()
     
 if __name__ == '__main__':
