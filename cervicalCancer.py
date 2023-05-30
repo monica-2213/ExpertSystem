@@ -13,13 +13,13 @@ def calculate_risk_score(answers):
     factor_scores = {}
 
     for factor, value in answers.items():
-        if factor in knowledge_base['Factor'].values:
-            factor_data = knowledge_base[knowledge_base['Factor'] == factor].iloc[0]
-            max_score += factor_data['Risk_Factor']
+        if factor in knowledge_base['factor'].values:
+            factor_data = knowledge_base[knowledge_base['factor'] == factor].iloc[0]
+            max_score += factor_data['risk_factor']
             for rule, score in factor_data.items()[2:]:
                 if eval(rule, {'__builtins__': None}, answers):
-                    total_score += factor_data['Risk_Factor']
-                    factor_scores[factor] = factor_scores.get(factor, 0) + factor_data['Risk_Factor']
+                    total_score += factor_data['risk_factor']
+                    factor_scores[factor] = factor_scores.get(factor, 0) + factor_data['risk_factor']
 
     risk_percentage = (total_score / max_score) * 100
     return risk_percentage, factor_scores, total_score
