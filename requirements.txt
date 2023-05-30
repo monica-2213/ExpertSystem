@@ -1,4 +1,0 @@
-streamlit
-scikit-fuzzy==0.4.2  # Replace with the version that works for you
-numpy
-scipy
