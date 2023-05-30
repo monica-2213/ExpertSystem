@@ -146,7 +146,7 @@ def layout():
             'urinary_problems': urinary_problems
         }
         
-        risk_percentage, factor_scores, total_score = calculate_risk_score(answers)
+        risk_percentage, factor_scores, total_score = calculate_risk_score(answers, knowledge_base)  # Pass the knowledge_base argument
         explanation = generate_explanation(factor_scores, total_score)
         
         st.write('Your risk score for cervical cancer:', f'{risk_percentage:.2f}%')
