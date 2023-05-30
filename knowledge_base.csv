@@ -1,0 +1,23 @@
+factor,risk_factor,rule
+age,2,age >= 60
+age,2,age >= 35 and age <= 44
+multiple_partners,2,"multiple_partners == ""Yes"""
+early_sexual_activity,2,"early_sexual_activity == ""Yes"""
+hpv_infection,2,"hpv_infection == ""Yes"""
+safe_sex,2,"safe_sex == ""No"""
+smoking,2,"smoking == ""Yes"""
+weakened_immune_system,2,"weakened_immune_system == ""Yes"""
+long_term_oral_contraceptives,2,"long_term_oral_contraceptives == ""Yes"""
+diet,2,"diet == ""Low in fruits and vegetables, high in processed foods"""
+obesity_overweight,2,"obesity_overweight == ""Yes"""
+physical_activity,2,"physical_activity == ""Sedentary"""
+physical_activity,2,"physical_activity == ""Moderately active"""
+physical_activity,2,"physical_activity == ""Regularly active and engage in physical exercise"""
+family_history,2,"family_history == ""Yes"""
+gene_variations,2,"gene_variations == ""Yes"""
+lynch_or_cowden_syndrome,2,"lynch_or_cowden_syndrome == ""Yes"""
+abnormal_bleeding,2,"abnormal_bleeding == ""Yes"""
+unusual_discharge,2,"unusual_discharge == ""Yes"""
+pelvic_pain,2,"pelvic_pain == ""Yes"""
+pain_during_intercourse,2,"pain_during_intercourse == ""Yes"""
+urinary_problems,2,"urinary_problems == ""Yes"""
