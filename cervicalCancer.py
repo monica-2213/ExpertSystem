@@ -9,6 +9,7 @@ def load_knowledge_base(file_name):
         return json.load(file)
 
 knowledge_base = load_knowledge_base('knowledge_base.json')
+st.write(knowledge_base)
 
 # Function to calculate the risk score/percentage
 def calculate_risk_score(answers):
