@@ -7,9 +7,11 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7),#fff5f8);
+        background: #57001e;
         background-position: center;
         background-size: cover;
+        color: #fff5f8;
+        text-align: center;
     }
     </style>
     """,
