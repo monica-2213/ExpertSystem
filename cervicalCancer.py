@@ -7,7 +7,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-color: #EFF6FF;
+        background-color: #810947;
     }
     </style>
     """,
@@ -193,9 +193,9 @@ def generate_explanation(answers):
 def layout():
     st.title('Cervical Cancer Risk Assessment')
     
-    st.markdown('<style>h1, p { color: #08565E; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
-    st.markdown('<style>h2, p { color: #218692; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
-    st.markdown('<style>p, p { color: #00444B; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
+    st.markdown('<style>h1, p { color: #FFBBFF; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
+    st.markdown('<style>h2, p { color: #F4C7FF; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
+    st.markdown('<style>p, p { color: #FFFFFF; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     
     st.header('Please provide the following information to assess your risk for cervical cancer.')
 
@@ -307,14 +307,10 @@ def layout():
         explanation = generate_explanation(answers)
         st.write('\n'.join(explanation))
         
-        if st.button('Recommend Medical Tests and Screenings'):
-            recommend_medical_tests()
+        recommend_medical_tests()
+        provide_treatment_recommendations()
+        provide_helplines()
         
-        if st.button('Provide Treatment Recommendations'):
-            provide_treatment_recommendations()
-        
-        if st.button('Provide Helplines'):
-            provide_helplines()
     
 def recommend_medical_tests():
     st.header('Recommended Medical Tests and Screenings')
