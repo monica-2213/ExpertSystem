@@ -1,4 +1,5 @@
 import streamlit as st
+import math
 
 st.set_page_config(page_icon="https://w7.pngwing.com/pngs/583/500/png-transparent-cervical-cancer-screening-cervix-prevent-cancer.png")
 
@@ -176,6 +177,12 @@ def calculate_risk_score(answers):
                     total_score += factor_data['risk_factor']
                     factor_scores[factor] = factor_scores.get(factor, 0) + factor_data['risk_factor']
                     factor_probabilities[factor] = factor_data['probability']
+                    
+                    # Bayesian updating
+                    prior_probability = factor_data['probability']
+                    likelihood = math.exp(-score)
+                    posterior_probability = (prior_probability * likelihood) / (1 - prior_probability + prior_probability * likelihood)
+                    factor_data['probability'] = posterior_probability
 
     risk_percentage = (total_score / max_score) * 100
     return risk_percentage, factor_scores, total_score, factor_probabilities
