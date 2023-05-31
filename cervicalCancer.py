@@ -274,7 +274,17 @@ def layout():
         
         risk_percentage, factor_scores, total_score = calculate_risk_score(answers)
         
-        st.write('Your risk score for cervical cancer:', f'{risk_percentage:.2f}%')
+        # Color and font size styling
+        if risk_percentage >= 50:
+            risk_color = 'red'
+        else:
+            risk_color = 'green'
+
+        risk_style = f"font-size: 24px; color: {risk_color}; font-weight: bold;"
+
+        # Display risk percentage with styling
+        st.write('Your risk score for cervical cancer:', f'<span style="{risk_style}">{risk_percentage:.2f}%</span>', unsafe_allow_html=True)
+        
         if risk_percentage >= 50:
             st.warning('Based on your risk score, you have a relatively higher risk for cervical cancer. Please consult with your healthcare provider for further evaluation and recommendations.')
         else:
