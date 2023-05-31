@@ -146,23 +146,8 @@ def generate_explanation(factor_scores, total_score):
     for factor, score in factor_scores.items():
         percentage = (score / total_score) * 100
         explanation += f"- {factor}: {score} ({percentage:.2f}%)\n"
+        explanation += f"    {knowledge_base[factor]['description']}\n\n"
     return explanation
-
-def get_factor_explanation(factor):
-    # Function to retrieve the detailed explanation for each risk factor
-    if factor == "age":
-        return "Age is a significant risk factor for cervical cancer. As women get older, their risk of developing cervical cancer increases."
-    if factor == "smoking":
-        return "Smoking tobacco increases the risk of developing cervical cancer. Chemicals in tobacco can damage cervical cells and increase the likelihood of cancerous changes."
-    if factor == "HPV":
-        return "Infection with high-risk types of human papillomavirus (HPV) is the most common cause of cervical cancer. HPV is a sexually transmitted infection."
-    if factor == "number_of_sexual_partners":
-        return "Having multiple sexual partners increases the risk of HPV infection, which is a major risk factor for cervical cancer."
-    # Add more risk factor explanations as needed
-
-    # If the factor is not recognized, return a generic explanation
-    return f"No specific explanation available for the risk factor: {factor}"
-
 
 #Function for UI
 def layout():
@@ -269,8 +254,6 @@ def layout():
             st.success('Based on your risk score, you have a relatively lower risk for cervical cancer. However, it is still important to attend regular screenings and maintain a healthy lifestyle.')
         st.write('Your risk score is calculated based on various risk factors for cervical cancer. The higher the risk score, the higher the probability of developing cervical cancer. The factors that contributed most to your risk score include...')
         st.write(explanation)
-        statements = generate_explanation(risk_factors, factor_contributions)
-        st.write(statements)
         
         recommend_medical_tests()
         provide_treatment_recommendations()
