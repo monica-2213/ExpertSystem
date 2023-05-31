@@ -170,10 +170,11 @@ def generate_explanation(answers):
             factor_data = knowledge_base[factor]
             factor_description = factor_data['description']
             
-            if eval(factor_data['rules'], {'__builtins__': None}, answers):
-                explanation.append(f"{factor_description}: Yes")
-            else:
-                explanation.append(f"{factor_description}: No")
+            for rule, score in factor_data['rules'].items():
+                if eval(rule, {'__builtins__': None}, answers):
+                    explanation.append(f"{factor_description}: Yes")
+                else:
+                    explanation.append(f"{factor_description}: No")
     
     return explanation
 
