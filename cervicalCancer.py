@@ -2,6 +2,19 @@ import streamlit as st
 
 st.set_page_config(page_icon="https://w7.pngwing.com/pngs/583/500/png-transparent-cervical-cancer-screening-cervix-prevent-cancer.png")
 
+# Add custom CSS styles
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-image: url('https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?w=2000');
+        background-size: cover;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 knowledge_base = {
     'age': {
         'risk_factor': 2,
