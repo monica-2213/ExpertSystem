@@ -14,24 +14,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown(
-    """
-    <style>
-    .colorful-button {
-        background-color: #FFFFFF;
-        color: #08565E;
-    }
-    
-    .colorful-button: hover{
-        background-color: #08565E;
-        color: #FFFFFF;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-
 knowledge_base = {
     'age': {
         'risk_factor': 2,
@@ -215,6 +197,23 @@ def layout():
     st.markdown('<style>h2, p { color: #fcfbf5; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     st.markdown('<style>p, p { color: #ffffff; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     
+    st.markdown(
+        """
+        <style>
+        .colorful-button {
+            background-color: #FFFFFF;
+            color: #08565E;
+        }
+
+        .colorful-button: hover{
+            background-color: #08565E;
+            color: #FFFFFF;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+    
     st.header('Please provide the following information to assess your risk for cervical cancer.')
 
     # Use beta_expander to collapse and expand sections
@@ -279,7 +278,7 @@ def layout():
         st.markdown('#### Urinary Problems')
         urinary_problems = st.radio('Have you experienced urinary problems such as blood in the urine (hematuria), urinary incontinence, or frequent urination?', ['Yes', 'No'])
     
-    if st.button("Submit", key='submit_button', help="Click to submit", unsafe_allow_html=True):
+    if st.button("Submit", key='submit_button', help="Click to submit", class="colorful-button"):
         answers = {
             'age': age,
             'multiple_partners': multiple_partners,
