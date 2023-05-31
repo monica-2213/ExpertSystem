@@ -7,7 +7,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-image: url('https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?w=2000');
+        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7),#0a5587),url(https://febohealth.com/wp-content/uploads/2021/12/womens-health-reproductive-system-concept-model-uterus-flower-pink-background.jpg);
         background-size: cover;
     }
     </style>
