@@ -5,6 +5,7 @@ st.set_page_config(page_icon="https://w7.pngwing.com/pngs/583/500/png-transparen
 knowledge_base = {
     'age': {
         'risk_factor': 2,
+        'description': 'Age: Your age can impact your risk for cervical cancer. The risk increases with age.',
         'rules': {
             'age >= 60': 0,
             'age >= 35 and age <= 44': 2
@@ -12,42 +13,49 @@ knowledge_base = {
     },
     'multiple_partners': {
         'risk_factor': 2,
+        'description': 'Age: Your age can impact your risk for cervical cancer. The risk increases with age.',
         'rules': {
             'multiple_partners == "Yes"': 2
         }
     },
     'early_sexual_activity': {
         'risk_factor': 2,
+        'description': 'Age: Your age can impact your risk for cervical cancer. The risk increases with age.',
         'rules': {
             'early_sexual_activity == "Yes"': 2
         }
     },
     'hpv_infection': {
         'risk_factor': 2,
+        'description': 'Age: Your age can impact your risk for cervical cancer. The risk increases with age.',
         'rules': {
             'hpv_infection == "Yes"': 2
         }
     },
     'safe_sex': {
         'risk_factor': 2,
+        'description': 'Age: Your age can impact your risk for cervical cancer. The risk increases with age.',
         'rules': {
             'safe_sex == "No"': 2
         }
     },
     'smoking': {
         'risk_factor': 2,
+        'description': 'Age: Your age can impact your risk for cervical cancer. The risk increases with age.',
         'rules': {
             'smoking == "Yes"': 2
         }
     },
     'weakened_immune_system': {
         'risk_factor': 2,
+        'description': 'Age: Your age can impact your risk for cervical cancer. The risk increases with age.',
         'rules': {
             'weakened_immune_system == "Yes"': 2
         }
     },
     'long_term_oral_contraceptives': {
         'risk_factor': 2,
+        'description': 'Age: Your age can impact your risk for cervical cancer. The risk increases with age.',
         'rules': {
             'long_term_oral_contraceptives == "Yes"': 2
         }
@@ -142,12 +150,14 @@ def calculate_risk_score(answers):
 
 
 def generate_explanation(factor_scores, total_score):
-    explanation = "Factors contributing to your risk score:\n"
+    explanation = "Factors contributing to your risk score:\n\n"
     for factor, score in factor_scores.items():
         percentage = (score / total_score) * 100
+        description = knowledge_base[factor]['description']
         explanation += f"- {factor}: {score} ({percentage:.2f}%)\n"
-        explanation += f"    {knowledge_base[factor]['description']}\n\n"
+        explanation += f"    {description}\n\n"
     return explanation
+
 
 #Function for UI
 def layout():
