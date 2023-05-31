@@ -307,11 +307,15 @@ def layout():
         explanation = generate_explanation(answers)
         st.write('\n'.join(explanation))
         
-        recommend_medical_tests()
-        provide_treatment_recommendations()
-        provide_helplines()
-
-
+        if st.button('Recommend Medical Tests and Screenings'):
+            recommend_medical_tests()
+        
+        if st.button('Provide Treatment Recommendations'):
+            provide_treatment_recommendations()
+        
+        if st.button('Provide Helplines'):
+            provide_helplines()
+    
 def recommend_medical_tests():
     st.header('Recommended Medical Tests and Screenings')
     st.write('Pap test: Recommended for all individuals with a cervix, starting at the age of 21 or within 3 years of becoming sexually active. It should be repeated every 3 years for individuals aged 21-65 who have a normal result.')
@@ -323,11 +327,12 @@ def provide_treatment_recommendations():
     st.write('Treatment options for cervical cancer may include surgery, radiation therapy, chemotherapy, or a combination of these approaches. The choice of treatment depends on the stage of cancer, overall health, and individual preferences. Your healthcare provider will guide you through the treatment decision-making process.')
 
 def provide_helplines():
-    with st.beta_expander('Helplines (Malaysia)'):
-        st.write('Cancer Helpline: 1-800-88-1000')
-        st.write('National Population and Family Development Board (LPPKN): 03-7953 6655')
-        st.write('Malaysian AIDS Council: 03-4047 7000')
-        st.write('Talian Kasih: 15999 (24-hour helpline for survivors of domestic violence, sexual abuse, and other related issues)')
+    st.header('Helplines (Malaysia)')
+    st.write('Cancer Helpline: 1-800-88-1000')
+    st.write('National Population and Family Development Board (LPPKN): 03-7953 6655')
+    st.write('Malaysian AIDS Council: 03-4047 7000')
+    st.write('Talian Kasih: 15999 (24-hour helpline for survivors of domestic violence, sexual abuse, and other related issues)')
+
     
 def main():
     layout()
