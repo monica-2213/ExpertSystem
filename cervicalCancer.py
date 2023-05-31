@@ -7,7 +7,8 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-color: #FCF0FF;
+        background: rgb(255,245,248);
+        background: linear-gradient(180deg, rgba(255,245,248,1) 0%, rgba(87,0,30,1) 100%);
     }
     </style>
     """,
@@ -314,21 +315,21 @@ def layout():
     
 def recommend_medical_tests():
     st.header('Recommended Medical Tests and Screenings')
-    st.write('Pap test: Recommended for all individuals with a cervix, starting at the age of 21 or within 3 years of becoming sexually active. It should be repeated every 3 years for individuals aged 21-65 who have a normal result.')
-    st.write('HPV testing: In addition to the Pap test, HPV testing may be recommended for individuals aged 30 and above as part of cervical cancer screening. Talk to your healthcare provider for more information about HPV testing and its frequency.')
+    st.markdown('- Pap test: Recommended for all individuals with a cervix, starting at the age of 21 or within 3 years of becoming sexually active. It should be repeated every 3 years for individuals aged 21-65 who have a normal result.')
+    st.markdown('- HPV testing: In addition to the Pap test, HPV testing may be recommended for individuals aged 30 and above as part of cervical cancer screening. Talk to your healthcare provider for more information about HPV testing and its frequency.')
 
 def provide_treatment_recommendations():
     st.header('Treatment Recommendations')
-    st.write('If your risk score indicates a higher risk for cervical cancer, it is important to consult with your healthcare provider for further evaluation and recommendations.')
-    st.write('Treatment options for cervical cancer may include surgery, radiation therapy, chemotherapy, or a combination of these approaches. The choice of treatment depends on the stage of cancer, overall health, and individual preferences. Your healthcare provider will guide you through the treatment decision-making process.')
+    st.markdown('- If your risk score indicates a higher risk for cervical cancer, it is important to consult with your healthcare provider for further evaluation and recommendations.')
+    st.markdown('- Treatment options for cervical cancer may include surgery, radiation therapy, chemotherapy, or a combination of these approaches. The choice of treatment depends on the stage of cancer, overall health, and individual preferences. Your healthcare provider will guide you through the treatment decision-making process.')
 
 def provide_helplines():
     st.header('Helplines (Malaysia)')
-    st.write('Cancer Helpline: 1-800-88-1000')
-    st.write('National Population and Family Development Board (LPPKN): 03-7953 6655')
-    st.write('Malaysian AIDS Council: 03-4047 7000')
-    st.write('Talian Kasih: 15999 (24-hour helpline for survivors of domestic violence, sexual abuse, and other related issues)')
-
+    st.markdown('- Cancer Helpline: 1-800-88-1000')
+    st.markdown('- National Population and Family Development Board (LPPKN): 03-7953 6655')
+    st.markdown('- Malaysian AIDS Council: 03-4047 7000')
+    st.markdown('- Talian Kasih: 15999 (24-hour helpline for survivors of domestic violence, sexual abuse, and other related issues)')
+    
     
 def main():
     layout()
