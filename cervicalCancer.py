@@ -323,12 +323,11 @@ def provide_treatment_recommendations():
     st.write('Treatment options for cervical cancer may include surgery, radiation therapy, chemotherapy, or a combination of these approaches. The choice of treatment depends on the stage of cancer, overall health, and individual preferences. Your healthcare provider will guide you through the treatment decision-making process.')
 
 def provide_helplines():
-    st.header('Helplines (Malaysia)')
-    st.write('Cancer Helpline: 1-800-88-1000')
-    st.write('National Population and Family Development Board (LPPKN): 03-7953 6655')
-    st.write('Malaysian AIDS Council: 03-4047 7000')
-    st.write('Talian Kasih: 15999 (24-hour helpline for survivors of domestic violence, sexual abuse, and other related issues)')
-
+    with st.beta_expander('Helplines (Malaysia)'):
+        st.write('Cancer Helpline: 1-800-88-1000')
+        st.write('National Population and Family Development Board (LPPKN): 03-7953 6655')
+        st.write('Malaysian AIDS Council: 03-4047 7000')
+        st.write('Talian Kasih: 15999 (24-hour helpline for survivors of domestic violence, sexual abuse, and other related issues)')
     
 def main():
     layout()
