@@ -184,7 +184,7 @@ def generate_explanation(answers):
             
             for rule, score in factor_data['rules'].items():
                 if eval(rule, {'__builtins__': None}, answers):
-                    explanation.append(f"{factor_description}")
+                    explanation.append(f"{factor_description}\n")
     
     return explanation
 
@@ -305,7 +305,7 @@ def layout():
        
         # Generate and display the explanation
         explanation = generate_explanation(answers)
-        st.markdown('\n - '.join(explanation))
+        st.write('\n'.join(explanation))
         
         recommend_medical_tests()
         provide_treatment_recommendations()
