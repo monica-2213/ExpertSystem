@@ -283,7 +283,7 @@ def layout():
        
         # Generate and display the explanation
         explanation = generate_explanation(answers)
-        st.write('\n'.join(explanation))
+        st.markdown('- \n'.join(explanation))
         
         recommend_medical_tests()
         provide_treatment_recommendations()
