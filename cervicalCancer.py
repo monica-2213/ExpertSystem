@@ -292,7 +292,7 @@ def layout():
             'urinary_problems': urinary_problems
         }
         
-        risk_percentage, factor_scores, total_score = calculate_risk_score(answers)
+        risk_percentage, factor_scores, total_score, factor_probabilities = calculate_risk_score(answers)
         
         # Color and font size styling
         if risk_percentage >= 50:
