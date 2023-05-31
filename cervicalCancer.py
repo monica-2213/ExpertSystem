@@ -13,67 +13,70 @@ knowledge_base = {
     },
     'multiple_partners': {
         'risk_factor': 2,
-        'description': 'Age: Your age can impact your risk for cervical cancer. The risk increases with age.',
+        'description': 'Multiple Sexual Partners: Having multiple sexual partners increases the risk of cervical cancer.',
         'rules': {
             'multiple_partners == "Yes"': 2
         }
     },
     'early_sexual_activity': {
         'risk_factor': 2,
-        'description': 'Age: Your age can impact your risk for cervical cancer. The risk increases with age.',
+        'description': 'Early Sexual Activity: Engaging in sexual activity at a young age is associated with a higher risk of cervical cancer.',
         'rules': {
             'early_sexual_activity == "Yes"': 2
         }
     },
     'hpv_infection': {
         'risk_factor': 2,
-        'description': 'Age: Your age can impact your risk for cervical cancer. The risk increases with age.',
+        'description': 'HPV Infection: Human papillomavirus (HPV) infection is the most significant risk factor for cervical cancer.',
         'rules': {
             'hpv_infection == "Yes"': 2
         }
     },
     'safe_sex': {
         'risk_factor': 2,
-        'description': 'Age: Your age can impact your risk for cervical cancer. The risk increases with age.',
+        'description': 'Unsafe Sexual Practices: Not practicing safe sex, such as not using condoms, increases the risk of cervical cancer.',
         'rules': {
             'safe_sex == "No"': 2
         }
     },
     'smoking': {
         'risk_factor': 2,
-        'description': 'Age: Your age can impact your risk for cervical cancer. The risk increases with age.',
+        'description': 'Smoking: Smoking tobacco can increase the risk of developing cervical cancer.',
         'rules': {
             'smoking == "Yes"': 2
         }
     },
     'weakened_immune_system': {
         'risk_factor': 2,
-        'description': 'Age: Your age can impact your risk for cervical cancer. The risk increases with age.',
+        'description': 'Weakened Immune System: Having a weakened immune system due to conditions like HIV/AIDS or immunosuppressive therapy can increase the risk of cervical cancer.',
         'rules': {
             'weakened_immune_system == "Yes"': 2
         }
     },
     'long_term_oral_contraceptives': {
         'risk_factor': 2,
-        'description': 'Age: Your age can impact your risk for cervical cancer. The risk increases with age.',
+        'description': 'Long-term Oral Contraceptives: Taking oral contraceptives for an extended period may slightly increase the risk of cervical cancer.',
         'rules': {
             'long_term_oral_contraceptives == "Yes"': 2
         }
     },
     'diet': {
         'risk_factor': 2,
+        'description': 'Diet: A diet low in fruits and vegetables and high in processed foods may increase the risk of cervical cancer.',
         'rules': {
             'diet == "Low in fruits and vegetables, high in processed foods"': 2
         }
     },
     'obesity_overweight': {
         'risk_factor': 2,
+        'description': 'Obesity/Overweight: Being overweight or obese is associated with an increased risk of cervical cancer.',
         'rules': {
             'obesity_overweight == "Yes"': 2
         }
     },
     'physical_activity': {
         'risk_factor': 2,
+        'description': 'Physical Activity: Being sedentary or having low levels of physical activity may increase the risk of cervical cancer.',
         'rules': {
             'physical_activity == "Sedentary"': 2,
             'physical_activity == "Moderately active"': 1,
@@ -82,53 +85,62 @@ knowledge_base = {
     },
     'family_history': {
         'risk_factor': 2,
+        'description': 'Family History: Having a family history of cervical cancer may increase the risk of developing the disease.',
         'rules': {
             'family_history == "Yes"': 2
         }
     },
     'gene_variations': {
         'risk_factor': 2,
+        'description': 'Gene Variations: Certain genetic variations or mutations may increase the susceptibility to cervical cancer.',
         'rules': {
             'gene_variations == "Yes"': 2
         }
     },
     'lynch_or_cowden_syndrome': {
         'risk_factor': 2,
+        'description': 'Lynch or Cowden Syndrome: Having Lynch syndrome or Cowden syndrome increases the risk of cervical cancer.',
         'rules': {
             'lynch_or_cowden_syndrome == "Yes"': 2
         }
     },
     'abnormal_bleeding': {
         'risk_factor': 2,
+        'description': 'Abnormal Bleeding: Experiencing abnormal vaginal bleeding, such as between periods or after intercourse, may indicate an increased risk of cervical cancer.',
         'rules': {
             'abnormal_bleeding == "Yes"': 2
         }
     },
     'unusual_discharge': {
         'risk_factor': 2,
+        'description': 'Unusual Discharge: Having unusual vaginal discharge, such as a strong odor or unusual color, may be a sign of an increased risk of cervical cancer.',
         'rules': {
             'unusual_discharge == "Yes"': 2
         }
     },
     'pelvic_pain': {
         'risk_factor': 2,
+        'description': 'Pelvic Pain: Persistent pelvic pain or discomfort may indicate an increased risk of cervical cancer.',
         'rules': {
             'pelvic_pain == "Yes"': 2
         }
     },
     'pain_during_intercourse': {
         'risk_factor': 2,
+        'description': 'Pain During Intercourse: Experiencing pain or discomfort during sexual intercourse may be a sign of an increased risk of cervical cancer.',
         'rules': {
             'pain_during_intercourse == "Yes"': 2
         }
     },
     'urinary_problems': {
         'risk_factor': 2,
+        'description': 'Urinary Problems: Having urinary problems, such as frequent urination or pain during urination, may indicate an increased risk of cervical cancer.',
         'rules': {
             'urinary_problems == "Yes"': 2
         }
     }
 }
+
 
 # Function to calculate the risk score/percentage
 def calculate_risk_score(answers):
