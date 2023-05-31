@@ -6,186 +6,151 @@ st.set_page_config(page_icon="https://w7.pngwing.com/pngs/583/500/png-transparen
 knowledge_base = {
     'age': {
         'risk_factor': 2,
-        'probability': 0.8,
         'description': 'Age: Your age can impact your risk for cervical cancer. The risk increases with age.',
         'rules': {
-            'age >= 60': 0,
-            'age >= 35 and age <= 44': 2
+            'age >= 60': (1.0, 0),
+            'age >= 35 and age <= 44': (0.8, 2)
         }
     },
     'multiple_partners': {
         'risk_factor': 2,
-        'probability': 0.7,
         'description': 'Multiple Sexual Partners: Having multiple sexual partners increases the risk of cervical cancer.',
         'rules': {
-            'multiple_partners == "Yes"': 2
+            'multiple_partners == "Yes"': (0.9, 2)
         }
     },
     'early_sexual_activity': {
         'risk_factor': 2,
-        'probability': 0.6,
         'description': 'Early Sexual Activity: Engaging in sexual activity at a young age is associated with a higher risk of cervical cancer.',
         'rules': {
-            'early_sexual_activity == "Yes"': 2
+            'early_sexual_activity == "Yes"': (0.7, 2)
         }
     },
     'hpv_infection': {
         'risk_factor': 2,
-        'probability': 0.9,
         'description': 'HPV Infection: Human papillomavirus (HPV) infection is the most significant risk factor for cervical cancer.',
         'rules': {
-            'hpv_infection == "Yes"': 2
+            'hpv_infection == "Yes"': (1.0, 2)
         }
     },
     'safe_sex': {
         'risk_factor': 2,
-        'probability': 0.5,
         'description': 'Unsafe Sexual Practices: Not practicing safe sex, such as not using condoms, increases the risk of cervical cancer.',
         'rules': {
-            'safe_sex == "No"': 2
+            'safe_sex == "No"': (0.8, 2)
         }
     },
     'smoking': {
         'risk_factor': 2,
-        'probability': 0.4,
         'description': 'Smoking: Smoking tobacco can increase the risk of developing cervical cancer.',
         'rules': {
-            'smoking == "Yes"': 2
+            'smoking == "Yes"': (0.9, 2)
         }
     },
     'weakened_immune_system': {
         'risk_factor': 2,
-        'probability': 0.6,
         'description': 'Weakened Immune System: Having a weakened immune system due to conditions like HIV/AIDS or immunosuppressive therapy can increase the risk of cervical cancer.',
         'rules': {
-            'weakened_immune_system == "Yes"': 2
+            'weakened_immune_system == "Yes"': (0.8, 2)
         }
     },
     'long_term_oral_contraceptives': {
         'risk_factor': 2,
-        'probability': 0.3,
         'description': 'Long-term Oral Contraceptives: Taking oral contraceptives for an extended period may slightly increase the risk of cervical cancer.',
         'rules': {
-            'long_term_oral_contraceptives == "Yes"': 2
+            'long_term_oral_contraceptives == "Yes"': (0.7, 2)
         }
     },
     'diet': {
         'risk_factor': 2,
-        'probability': 0.4,
         'description': 'Diet: A diet low in fruits and vegetables and high in processed foods may increase the risk of cervical cancer.',
         'rules': {
-            'diet == "Low in fruits and vegetables, high in processed foods"': 2
+            'diet == "Low in fruits and vegetables, high in processed foods"': (0.6, 2)
         }
     },
     'obesity_overweight': {
         'risk_factor': 2,
-        'probability': 0.5,
         'description': 'Obesity/Overweight: Being overweight or obese is associated with an increased risk of cervical cancer.',
         'rules': {
-            'obesity_overweight == "Yes"': 2
-        }
-    },
-    'physical_activity': {
-        'risk_factor': 2,
-        'probability': 0.3,
-        'description': 'Physical Activity: Being sedentary or having low levels of physical activity may increase the risk of cervical cancer.',
-        'rules': {
-            'physical_activity == "Sedentary"': 2,
-            'physical_activity == "Moderately active"': 1,
-            'physical_activity == "Regularly active and engage in physical exercise"': 0
+            'obesity_overweight == "Yes"': (0.7, 2)
         }
     },
     'family_history': {
-        'risk_factor': 2,
-        'probability': 0.5,
-        'description': 'Family History: Having a family history of cervical cancer may increase the risk of developing the disease.',
+        'risk_factor': 1,
+        'description': 'Family History: Having a family history of cervical cancer may increase your risk.',
         'rules': {
-            'family_history == "Yes"': 2
+            'family_history == "Yes"': (0.5, 1)
         }
     },
     'gene_variations': {
         'risk_factor': 2,
-        'probability': 0.4,
         'description': 'Gene Variations: Certain genetic variations or mutations may increase the susceptibility to cervical cancer.',
         'rules': {
-            'gene_variations == "Yes"': 2
+            'gene_variations == "Yes"': (2, 2)
         }
     },
     'lynch_or_cowden_syndrome': {
         'risk_factor': 2,
-        'probability': 0.5,
         'description': 'Lynch or Cowden Syndrome: Having Lynch syndrome or Cowden syndrome increases the risk of cervical cancer.',
         'rules': {
-            'lynch_or_cowden_syndrome == "Yes"': 2
+            'lynch_or_cowden_syndrome == "Yes"': (2, 2)
         }
     },
     'abnormal_bleeding': {
         'risk_factor': 2,
-        'probability': 0.7,
         'description': 'Abnormal Bleeding: Experiencing abnormal vaginal bleeding, such as between periods or after intercourse, may indicate an increased risk of cervical cancer.',
         'rules': {
-            'abnormal_bleeding == "Yes"': 2
+            'abnormal_bleeding == "Yes"': (2, 2)
         }
     },
     'unusual_discharge': {
         'risk_factor': 2,
-        'probability': 0.6,
         'description': 'Unusual Discharge: Having unusual vaginal discharge, such as a strong odor or unusual color, may be a sign of an increased risk of cervical cancer.',
         'rules': {
-            'unusual_discharge == "Yes"': 2
+            'unusual_discharge == "Yes"': (2, 2)
         }
     },
     'pelvic_pain': {
         'risk_factor': 2,
-        'probability': 0.4,
         'description': 'Pelvic Pain: Persistent pelvic pain or discomfort may indicate an increased risk of cervical cancer.',
         'rules': {
-            'pelvic_pain == "Yes"': 2
+            'pelvic_pain == "Yes"': (2, 2)
         }
     },
     'pain_during_intercourse': {
         'risk_factor': 2,
-        'probability': 0.6,
         'description': 'Pain During Intercourse: Experiencing pain or discomfort during sexual intercourse may be a sign of an increased risk of cervical cancer.',
         'rules': {
-            'pain_during_intercourse == "Yes"': 2
+            'pain_during_intercourse == "Yes"': (2, 2)
         }
     },
     'urinary_problems': {
         'risk_factor': 2,
-        'probability': 0.3,
         'description': 'Urinary Problems: Having urinary problems, such as frequent urination or pain during urination, may indicate an increased risk of cervical cancer.',
         'rules': {
-            'urinary_problems == "Yes"': 2
+            'urinary_problems == "Yes"': (2, 2)
         }
     }
 }
+
 
 # Function to calculate the risk score/percentage
 def calculate_risk_score(answers):
     total_score = 0
     max_score = 0
     factor_scores = {}
-    factor_probabilities = {}
 
     for factor, value in answers.items():
         if factor in knowledge_base:
             factor_data = knowledge_base[factor]
             max_score += factor_data['risk_factor']
-            for rule, score in factor_data['rules'].items():
+            for rule, (certainty, weight) in factor_data['rules'].items():
                 if eval(rule, {'__builtins__': None}, answers):
-                    total_score += factor_data['risk_factor']
-                    factor_scores[factor] = factor_scores.get(factor, 0) + factor_data['risk_factor']
-                    factor_probabilities[factor] = factor_data['probability']
-                    
-                    # Bayesian updating
-                    prior_probability = factor_data['probability']
-                    likelihood = math.exp(-score)
-                    posterior_probability = (prior_probability * likelihood) / (1 - prior_probability + prior_probability * likelihood)
-                    factor_data['probability'] = posterior_probability
+                    total_score += weight * certainty * factor_data['risk_factor']
+                    factor_scores[factor] = factor_scores.get(factor, 0) + weight * certainty * factor_data['risk_factor']
 
     risk_percentage = (total_score / max_score) * 100
-    return risk_percentage, factor_scores, total_score, factor_probabilities
+    return risk_percentage, factor_scores, total_score
 
 
 # Function to generate the explanation based on user answers
