@@ -316,7 +316,7 @@ def layout():
 
 def recommend_medical_tests():
     st.header('Recommended Medical Tests and Screenings')
-    st.markdown('- Pap test: Recommended for all individuals with a cervix, starting at the age of 21 or within 3 years of becoming sexually active. It should be repeated every 3 years for individuals aged 21-65 who have a normal result.')
+    st.write('Pap test: Recommended for all individuals with a cervix, starting at the age of 21 or within 3 years of becoming sexually active. It should be repeated every 3 years for individuals aged 21-65 who have a normal result.')
     st.markdown('- HPV testing: In addition to the Pap test, HPV testing may be recommended for individuals aged 30 and above as part of cervical cancer screening. Talk to your healthcare provider for more information about HPV testing and its frequency.')
 
 def provide_treatment_recommendations():
