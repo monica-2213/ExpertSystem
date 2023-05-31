@@ -7,7 +7,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background: #064d51;
+        background: #e1f9fa;
         background-position: center;
         background-size: cover;
     }
@@ -195,8 +195,9 @@ def generate_explanation(answers):
 def layout():
     st.title('Cervical Cancer Risk Assessment')
     
-    st.markdown('<style>h1, p { color: #c0f2f3; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
-    st.markdown('<style>h2, p { color: #e1f9fa; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
+    st.markdown('<style>h1, p { color: #08565E; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
+    st.markdown('<style>h2, p { color: #064d51; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
+    st.markdown('<style>p, p { color: #00444B; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     
     st.header('Please provide the following information to assess your risk for cervical cancer.')
 
