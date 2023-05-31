@@ -7,8 +7,9 @@ st.markdown(
     """
     <style>
     .stApp {
-        background: rgb(255,245,248);
-        background: linear-gradient(180deg, rgba(255,245,248,1) 0%, rgba(87,0,30,1) 100%);
+        background-image: linear-gradient(rgba(0,0,0,0.2),#fff5f8),url(https://images.template.net/121244/international-women-s-day-design-background-nuejr.jpg);
+        background-position: center;
+        background-size: cover;
     }
     </style>
     """,
