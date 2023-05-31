@@ -161,6 +161,23 @@ def calculate_risk_score(answers):
     return risk_percentage, factor_scores, total_score
 
 
+# Function to generate the explanation based on user answers
+def generate_explanation(answers):
+    explanation = []
+    
+    for factor, value in answers.items():
+        if factor in knowledge_base:
+            factor_data = knowledge_base[factor]
+            factor_description = factor_data['description']
+            
+            if eval(factor_data['rules'], {'__builtins__': None}, answers):
+                explanation.append(f"{factor_description}: Yes")
+            else:
+                explanation.append(f"{factor_description}: No")
+    
+    return explanation
+
+
 #Function for UI
 def layout():
     st.title('Cervical Cancer Risk Assessment')
@@ -264,6 +281,10 @@ def layout():
         else:
             st.success('Based on your risk score, you have a relatively lower risk for cervical cancer. However, it is still important to attend regular screenings and maintain a healthy lifestyle.')
         st.write('Your risk score is calculated based on various risk factors for cervical cancer. The higher the risk score, the higher the probability of developing cervical cancer. The factors that contributed most to your risk score include...')
+        
+        # Generate and display the explanation
+        explanation = generate_explanation(answers)
+        st.write('\n'.join(explanation))
         
         recommend_medical_tests()
         provide_treatment_recommendations()
