@@ -279,7 +279,7 @@ def layout():
         st.markdown('#### Urinary Problems')
         urinary_problems = st.radio('Have you experienced urinary problems such as blood in the urine (hematuria), urinary incontinence, or frequent urination?', ['Yes', 'No'])
     
-    if st.button('Submit'):
+    if st.button("Submit", key='submit_button', help="Click to submit", unsafe_allow_html=True):
         answers = {
             'age': age,
             'multiple_partners': multiple_partners,
