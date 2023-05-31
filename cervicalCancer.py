@@ -8,7 +8,6 @@ st.markdown(
     <style>
     .stApp {
         background: linear-gradient(#f4c2c2, #fcd7d7);
-        background-image: url(https://wallpapers.com/images/featured/o7xpod19e080jvm0.jpg);
         background-position: center;
         background-size: cover;
     }
