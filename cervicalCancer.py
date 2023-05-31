@@ -199,7 +199,7 @@ def layout():
     st.markdown('<style>h2, p { color: #064d51; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     st.markdown('<style>p, p { color: #00444B; font-family: "Arial", sans-serif;}</style>', unsafe_allow_html=True)
     
-    st.header('Please provide the following information to assess your risk for cervical cancer.')
+    st.markdown('#### Please provide the following information to assess your risk for cervical cancer:')
 
     # Use beta_expander to collapse and expand sections
     with st.beta_expander('Demographics'):
