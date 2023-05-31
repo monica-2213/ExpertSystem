@@ -10,8 +10,6 @@ st.markdown(
         background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5),#fce3e3),url(https://febohealth.com/wp-content/uploads/2021/12/womens-health-reproductive-system-concept-model-uterus-flower-pink-background.jpg);
         background-position: center;
         background-size: cover;
-        background: linear-gradient(#f4c2c2, #fce3e3);
-        background-size: cover;
     }
     </style>
     """,
