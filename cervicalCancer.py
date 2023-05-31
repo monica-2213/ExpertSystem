@@ -7,7 +7,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7),#ffffff),url(https://febohealth.com/wp-content/uploads/2021/12/womens-health-reproductive-system-concept-model-uterus-flower-pink-background.jpg);
+        background: linear-gradient(#f4c2c2, #fff);
         background-size: cover;
     }
     </style>
